@@ -1,0 +1,15 @@
+@import '../variables';
+
+.wood {
+    position: fixed;
+    background-image: url("../../assets/svg/wood.svg");
+    width: 150px;
+    height: 150px;
+    transform-origin: center;
+    background-position: center 40%;
+    z-index: 7;
+    background-repeat: no-repeat;
+    background-size: contain;
+    opacity: 1;
+    transition: all .1s;
+}

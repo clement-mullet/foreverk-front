@@ -1,0 +1,66 @@
+@import './variables';
+
+
+*{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-moz-osx-font-smooth:grayscale;}
+
+.clouds__clouds{padding:0;max-width:none;pointer-events:none;}
+.clouds__cloud, .clouds__cloud-paulownia{width:100%;position:absolute;bottom:0;}
+.clouds__cloud img, .clouds__cloud-paulownia img{width:100%;}
+// .clouds__mask{width:100%;height:300vh;-webkit-mask-image:url("https://www.capsul-in-pro.com/home-compost-capsule/assets/images/scrap-inverted-81ead9740df14353d5f8feee43326d4b.svg#scrap");-webkit-mask-size:100% 100%;-webkit-mask-clip:border-box;-webkit-mask-size:100vw;-webkit-mask-repeat:no-repeat;-webkit-mask-position:bottom;position:absolute;left:0;right:0;bottom:-2px;}
+.clouds__transition{position:absolute;bottom:0;left:0;right:0;width:100%;height:100vh;}
+.clouds [data-cloud="313"] img{opacity:0.75;transform:scale(0.713646532);}
+.clouds [data-cloud="316"] img{transform:scale(-1);}
+
+
+.clouds [data-cloud-name="cloud2"]{width: 115.75vw;left: -3.5vw;bottom: 27.5vw;}
+.clouds [data-cloud-name="cloud1"]{width:57.49999999999999vw; z-index: 10;left:26.75vw;bottom:-10vw;}
+.clouds [data-cloud-name="cloud4"]{width: 225vw;z-index: 10; left: -35vw;bottom: -25vw;}
+.clouds [data-cloud-name="cloud3"]{width:177.5vw;left:-35vw;bottom:-10vw;}
+.clouds [data-cloud-name="cloud0"]{width:80vw;left:15vw;bottom:20.5vw;}
+.clouds [data-cloud-name="cloud5"]{width:177.5vw; z-index: 10; left:-35vw;bottom:-25vw;}
+.clouds [data-cloud-name="cloud6"]{width:225vw;left:-35vw;bottom:-25vw;}
+
+
+.clouds [data-cloud-name="cloud8"]{width:57.49999999999999vw; z-index: 10;left:26.75vw;bottom:-10vw;}
+.clouds [data-cloud-name="cloud9"]{width: 225vw;z-index: 10; left: -35vw;bottom: -25vw;}
+
+
+@media (max-width: 1024px){
+.clouds__cloud{max-width:4000px;}
+.clouds [data-cloud-name="cloud2"]{width:463vw;left:-14.000000000000002vw;bottom:-10vw;}
+.clouds [data-cloud-name="cloud1"]{width:229.99999999999997vw;left:107vw;bottom:45vw;}
+.clouds [data-cloud-name="cloud4"]{width:900vw;left:-140vw;bottom:-100vw;}
+.clouds [data-cloud-name="cloud3"]{width:710vw;left:-140vw;bottom:-100vw;}
+.clouds [data-cloud-name="cloud0"]{width:320vw;left:60vw;bottom:10vw;}
+.clouds [data-cloud-name="cloud5"]{width:710vw;left:-140vw;bottom:-208vw;}
+.clouds [data-cloud-name="cloud6"]{width:900vw;left:-140vw;bottom:-208vw;}}
+
+
+
+.elementor-widget-container {
+    overflow: hidden;
+}
+
+strong {
+    font-weight: bold;
+}
+
+.page-content {
+    overflow: hidden;
+}
+
+.text-gradient-green {
+    h2 {
+        background: linear-gradient(92.4deg, #2F4B26 8.26%, #81AC37 111.1%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-fill-color: transparent;
+    }
+}
+
+.lists {
+    ul {
+        list-style: inside !important;
+    }
+}

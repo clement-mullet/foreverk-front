@@ -1,0 +1,29 @@
+@import '../variables';
+
+:root {
+    --center: 1;
+}
+
+.frame-transition {
+    position: relative;
+    width: calc(100% + 3000px);
+    max-width: calc(100% + 3000px) !important;
+    .elementor-widget-heading {
+        width: auto;
+    }
+    > div {
+        > div {
+            animation: frame-movement 20s infinite linear;
+        }
+    }
+}
+
+@keyframes frame-movement {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(var(--center));
+    }
+}

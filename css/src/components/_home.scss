@@ -1,0 +1,1163 @@
+@import '../variables';
+
+section {
+    &.top-home {
+        background: linear-gradient(180deg, #FFFFFF 0%, #C3EEDF 51.56%, #D3ECD6 100%);
+        top: 1px;
+        &::before {
+            position: absolute;
+            content: "";
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("../../assets/content/tree-background.png");
+            background-position: 100%  bottom;
+            background-repeat: no-repeat;
+            background-size: contain;
+            mix-blend-mode: multiply;
+        }
+        > div.title {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            padding-bottom: 10vh;
+            @include flex(column, center, center);
+            > div {
+                &:first-child {
+                    position: relative;
+                    height: auto;
+                    width: 90%;
+                    @include flex(column, center, center);
+    
+                    > {
+                        h4 {
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 150px;
+                            line-height: 125px;
+                            text-align: center;
+                            @include color-green-gradient();
+                            z-index: 3;
+                        }
+                        b {
+                            position: absolute;
+                            right: -80px;
+                            top: 80px;
+                            transform: rotate(270deg);
+                            transform-origin: center;
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 7px;
+                            line-height: 8px;
+                            letter-spacing: 2.5px;
+                            color: $BROWN;
+                        }
+                        h3 {
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 150px;
+                            line-height: 125px;
+                            z-index: 10;
+                            color: $BLACK_GREEN;
+                            text-align: center;
+                            margin-bottom: 30px;
+                        }
+                        span {
+                            font-style: normal;
+                            font-weight: 400;
+                            font-size: 38px;
+                            line-height: 34px;
+                            text-align: center;
+                            color: $BLACK_GREEN;
+                        }
+                    }
+                }
+            }
+            > .arrow-down {
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                height: 100%;
+                background-image: url("../../assets/svg/circle-arrow-down.svg");
+                background-position: 50% 85%;
+                background-repeat: no-repeat;
+                background-size: 42px;
+                z-index: 7;
+            }
+            > .cloud {
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                height: 100%;
+                background-image: url("../../assets/content/cloud.png");
+                background-position: 50% 80%;
+                background-repeat: no-repeat;
+                background-size: 50%;
+                z-index: 7;
+            }
+            
+        }
+    }
+    &.bottom-home {
+        background: linear-gradient(180deg, #0F1F12 37.84%, #0F1F12 59.87%, #FFFFFF 99.59%);
+        height: 150vh;
+        margin-bottom: 700px;
+        @include flex(column, center, flex-end);
+        &::after {
+            position: absolute;
+            content: "";
+            width: 100%;
+            left: 0;
+            bottom: -550px;
+            height: 100%;
+            mix-blend-mode: darken;
+            background-image: url("../../assets/content/pollution.png");
+            background-position: 50% bottom;
+            background-repeat: no-repeat;
+            background-size: 100%;
+            z-index: 3;
+        }
+        &::before {
+            position: absolute;
+            content: "";
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("../../assets/content/dark-tree-reverse.png");
+            background-position: top center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            mix-blend-mode: normal;
+        }
+        > div.title {
+            position: relative;
+            height: auto;
+            width: 90%;
+            z-index: 20;
+            margin-bottom: 15vh;
+            @include flex(column, center, center);
+            > {
+                span {
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 50px;
+                    line-height: 55px;
+                    text-align: center;
+                    color: black;
+                }
+                h3 {
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 150px;
+                    line-height: 124px;
+                    color: black;
+                    text-align: center;
+                }
+                h4 {
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 150px;
+                    line-height: 124px;
+                    text-align: center;
+                    color: $RED;
+                    text-align: center;
+                }
+                b {
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 21px;
+                    line-height: 25px;
+                    text-align: center;
+                    color: black;
+                    margin: 30px 0;
+                }
+            }
+        }
+        .big-cloud {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("../../assets/content/big-cloud.png");
+            background-position: 50% 60%;
+            background-repeat: no-repeat;
+            background-size: 100%;
+            z-index: 7;
+        }
+    }
+    &.pollution {
+        position: relative;
+        height: calc(200vh - 450px);
+        z-index: 10;
+
+        .content {
+            position: relative;
+            width: 100%;
+            height: calc(100% - 220px);
+            background-color: $LIGHT_BROWN;
+            @include flex(column, center, flex-start);
+            padding: 0 10%;
+            &::before {
+                position: absolute;
+                content: "";
+                width: 100%;
+                height: 250px;
+                top: -200px;
+                left: 0;
+                mix-blend-mode: darken;
+                background-image: url("../../assets/content/layer-round.png");
+                background-position: 50% top;
+                background-repeat: no-repeat;
+                background-size: cover;
+                z-index: 20;
+            }
+            &::after {
+                position: absolute;
+                content: "";
+                width: 100%;
+                height: 450px;
+                bottom: -220px;
+                left: 0;
+                mix-blend-mode: darken;
+                background-image: url("../../assets/content/layer-round-bottom.png");
+                background-position: 50% top;
+                background-repeat: no-repeat;
+                background-size: cover;
+                z-index: 20;
+            }
+            > {
+                span {
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 50px;
+                    line-height: 55px;
+                    width: 60%;
+                    text-align: center;
+
+                    color: #000000;
+                }
+
+                h2 {
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 150px;
+                    line-height: 124px;
+                    text-align: center;
+                    padding: 20px 0;
+
+                    background: linear-gradient(141.97deg, #42230C 21.94%, rgba(66, 35, 12, 0) 95.81%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    text-fill-color: transparent;
+                }
+                .images {
+                    position: relative;
+                    width: 100%;
+                    height: 100%;
+                    @include flex(row, center, center);
+                    > img {
+                        position: relative;
+                        height: 300px;
+                        mix-blend-mode: darken;
+                        &:first-child {
+                            right: -40px;
+                        }
+                        &:last-child {
+                            left: -40px;
+                        }
+                    }
+                }
+                .numbers {
+                    position: relative;
+                    width: 70%;
+                    padding: 80px 0 30px 0;
+                    @include flex(row, center, space-between);
+                    p {
+                        position: relative;
+                        font-style: normal;
+                        font-weight: 700;
+                        font-size: 80px;
+                        line-height: 65px;
+                        text-align: center;
+                        color: #000000;
+                        > b {
+                            position: absolute;
+                            right: -10px;
+                            font-weight: 400;
+                            top: -30px;
+                            font-size: 30px;
+                        }
+                        > i {
+                            font-style: normal;
+                        }
+                    }
+                    span {
+                        font-family: 'Inter';
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 20px;
+                        line-height: 55px;
+                        text-align: center;
+                        color: #000000;
+                    }
+                }
+            }
+        }
+    }
+    &.think-act-big {
+        position: relative;
+        height: 100%;
+        z-index: 10;
+        margin-top: 100px;
+        > .wood-cut {
+            position: relative;
+            display: flex;
+            align-items: center;
+            top: -250px;
+            justify-content: space-between;
+            > img {
+                &:nth-child(1) {
+                    position: relative;
+                    opacity: 1;
+                    right: 250px;
+                    width: 500px;
+                    height: 500px;
+                }
+                &:nth-child(2) {
+                    position: absolute;
+                    opacity: 0;
+                    width: 500px;
+                    height: 500px;
+                    transition: all .5s;
+                }
+                &:nth-child(3) {
+                    position: relative;
+                    opacity: 1;
+                    left: 250px;
+                    width: 500px;
+                    height: 500px;
+                }
+            }
+        }
+        > .title {
+            position: relative;
+            height: auto;
+            width: 90%;
+            margin: auto;
+            z-index: 20;
+            @include flex(column, center, center);
+
+            > {
+                h3 {
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 150px;
+                    line-height: 126px;
+                    text-align: center;
+                    background: linear-gradient(124.48deg, #2F4B26 29.64%, rgba(0, 0, 0, 0.9) 92.92%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    text-fill-color: transparent;
+                    z-index: 3;
+                }
+                h4 {
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 150px;
+                    line-height: 126px;
+                    text-align: center;
+                    z-index: 7;
+                    color: $LIGHT_GREEN;
+                }
+                h5 {
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 70px;
+                    line-height: 78px;
+                    /* identical to box height, or 112% */
+
+                    text-align: center;
+
+                    background: linear-gradient(124.48deg, #2F4B26 29.64%, rgba(0, 0, 0, 0.9) 92.92%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    text-fill-color: transparent;
+                }
+                b {
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 40px;
+                    line-height: 126px;
+                    text-align: center;
+                    color: #000000;
+
+                }
+            }
+        }
+        .forest-element {
+            width: 100%;
+            object-fit: contain;
+            height: 100%;
+            position: relative;
+        }
+        .develop-paulownia {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            z-index: 20;
+            @include flex(column, center, flex-start);
+
+            &::before {
+                position: absolute;
+                content: "";
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 350px;
+                background-color: $BLUE_GREEN;
+                z-index: 0;
+            }
+            > div.title {
+                position: relative;
+                margin-top: -350px;
+                padding: 350px 0 100px 0;
+                background: linear-gradient(360deg, #AE8A5A 69.22%, rgba(174, 138, 90, 0) 96.4%);
+                width: 100%;
+                height: auto;
+                @include flex(column, center, center);
+
+                p {
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 50px;
+                    line-height: 55px;
+                    text-align: center;
+                    color: #FFFFFF;
+                    width: 70%;
+                }
+                h4 {
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 150px;
+                    line-height: 126px;
+                    text-align: center;
+                    padding: 40px 0;
+                    color: #FFFFFF;
+                    width: 70%;
+                }
+            }
+            > div.content {
+                position: relative;
+                width: 100%;
+                height: 100vh;
+                padding: 100px 0;
+                margin-top: -1px;
+                background: $MEDIUM_BROWN;
+                @include flex(column, center, center);
+
+                > .wood-content-line {
+                    position: relative;
+                    z-index: 10;
+                    width: 100%;
+                    height: 100%;
+                    @include flex(column, center, center);
+                    > div {
+                        position: absolute;
+                        width: 100%;
+                        height: auto;
+                        @include flex(column, center, center);
+                        p {
+                            position: absolute;
+                            width: 330px;
+                            font-style: normal;
+                            font-weight: 400;
+                            font-size: 16px;
+                            line-height: 25px;
+                            color: #FFFFFF;
+                        }
+                        &.line1 {
+                            p {
+                                opacity: 0;
+                                transform: translate(-400px, -300px);;
+                                transition: ease-in-out .5s;
+                                &.active {
+                                    opacity: 1;
+                                }
+                            }
+                            > div {
+                                &.first-line {
+                                    position: absolute;
+                                    transition: ease-in-out .5s;
+                                    height: 3px;
+                                    width: 0px;
+                                    border-right: 0px solid white;
+                                    z-index: 30;
+                                    transform-origin: center;
+                                    transform: translate(-155px, -180px) rotate(60deg);
+                                    width: 160px;
+                                    &.active {
+                                        border-right: 160px solid white;
+                                    }
+                                } 
+                                &.second-line {
+                                    position: absolute;
+                                    transition: ease-in-out .5s;
+                                    height: 3px;
+                                    width: 0px;
+                                    border-right: 0px solid white;
+                                    z-index: 30;
+                                    transform-origin: center;
+                                    transform: translate(-274px, -249px) rotate(0deg);
+                                    width: 160px;
+                                    &.active {
+                                        border-right: 110px solid white;
+                                    }
+                                }
+                            }
+
+                        }
+                        &.line2 {
+                            p {
+                                opacity: 0;
+                                transform: translate(-400px, 150px);;
+                                transition: ease-in-out .5s;
+                                &.active {
+                                    opacity: 1;
+                                }
+                            }
+                            > div {
+                                &.first-line {
+                                    position: absolute;
+                                    transition: ease-in-out .5s;
+                                    height: 3px;
+                                    width: 0px;
+                                    border-right: 0px solid white;
+                                    z-index: 30;
+                                    transform-origin: center;
+                                    transform: translate(-85px, 80px) rotate(315deg);
+                                    width: 160px;
+                                    &.active {
+                                        border-right: 110px solid white;
+                                    }
+                                } 
+                                &.second-line {
+                                    position: absolute;
+                                    transition: ease-in-out .5s;
+                                    height: 3px;
+                                    width: 0px;
+                                    border-left: 0px solid white;
+                                    z-index: 30;
+                                    transform-origin: center;
+                                    transform: translate(-280px, 100.9px) rotate(180deg);
+                                    width: 350px;
+                                    &.active {
+                                        border-left: 350px solid white;
+                                    }
+                                }
+                            }
+                        }
+                        &.line3 {
+                            p {
+                                opacity: 0;
+                                transform: translate(500px, -200px);
+                                transition: ease-in-out .5s;
+                                &.active {
+                                    opacity: 1;
+                                }
+                            }
+                            > div {
+                                &.first-line {
+                                    position: absolute;
+                                    transition: ease-in-out .5s;
+                                    height: 3px;
+                                    border-left: 0px solid white;
+                                    z-index: 30;
+                                    transform-origin: center;
+                                    transform: translate(215px, -130px) rotate(315deg);
+                                    width: 160px;
+                                    &.active {
+                                        border-left: 110px solid white;
+                                    }
+                                } 
+                                &.second-line {
+                                    position: absolute;
+                                    transition: ease-in-out .5s;
+                                    height: 3px;
+                                    border-right: 0px solid white;
+                                    z-index: 30;
+                                    transform-origin: center;
+                                    transform: translate(335px, -150.7px) rotate(180deg);
+                                    width: 200px;
+                                    &.active {
+                                        border-right: 200px solid white;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    > img.forest-element {
+                        position: relative;
+                        height: auto;
+                        &.wood-plate-line{
+                            width: 355px;
+                            filter: drop-shadow(20px 24px 44px rgba(0, 0, 0, 0.44));
+                            z-index: 7;
+                            transform: translate(-100vw, 100px);
+                            transition: ease-in-out 1s;
+                            &.active {
+                                transform: translate(-100px, 100px);
+                            }
+                        }
+                        &.wood-round-line {
+                            width: 450px;
+                            z-index: 3;
+                            transform: translate(100vw, -90px);
+                            transition: ease-in-out 1s;
+                            &.active {
+                                transform: translate(70px, -90px)
+                            }
+                        }
+                    }
+                }
+                > .cloud {
+                    position: absolute;
+                    left: 0;
+                    bottom: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-image: url("../../assets/content/cloud.png");
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: 100%;
+                    z-index: 7;
+                }
+            }
+            > div.scroll-tree {
+                position: relative;
+                height: 110vh;
+
+                margin-bottom: 200px;
+                width: 100%;
+                margin-top: -1px;
+                background: linear-gradient(180deg, #AE8A5A 39.22%, rgba(174, 138, 90, 0) 86.4%);
+                @include flex(column, center, flex-start);
+
+                &:after {
+                    position: absolute;
+                    content: "";
+                    width: 100%;
+                    left: 0;
+                    bottom: 0;
+                    height: 600px;
+                    mix-blend-mode: darken;
+                    background-image: url("../../assets/content/grass.png");
+                    background-position: 50% bottom;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    z-index: 3;
+                }
+                > div.title {
+                    position: relative;
+                    width: 60%;
+                    height: auto;
+                    @include flex(column, center, center);
+                    h4 {
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 50px;
+                        line-height: 55px;
+                        text-align: center;
+                        color: #FFFFFF;
+                    }
+                    p {
+                        font-style: normal;
+                        font-weight: 300;
+                        font-size: 28px;
+                        line-height: 35px;
+                        text-align: center;
+                        color: #FFFFFF;
+
+                    }
+                }
+                > div.tree {
+                    width: 100%;
+                    height: 100%;
+                    gap: 40px;
+                    z-index: 100;
+                    @include flex(row, center, center);
+                    > div {
+                        &:first-child {
+                            width: 60%;
+                            height: 100%;
+                            @include flex(row, center, center);
+                            > img {
+                                position: absolute;
+                                width: auto;
+                                margin-bottom: 300px;
+                                bottom: 0;
+                            }
+                        }
+                        &:last-child {
+                            position: relative;
+                            width: 40%;
+                            height: 100%;
+                            @include flex(row, center, center);
+                            > .line {
+                                position: absolute;
+                                height: calc(100% - 450px);
+                                bottom: 0;
+                                margin: 150px 0 300px 0;
+                                width: 1px;
+                                background-color: white;
+                                > div {
+                                    position: relative;
+                                    height: 25%;
+                                    width: 40px;
+                                    left: -20px;
+                                    border-bottom: 1px solid white;
+                                    display: flex;
+                                    flex-direction: column;
+                                    justify-content: flex-end;
+                                    &:first-child {
+                                        justify-content: space-between;
+                                        > div {
+                                            &:first-child {
+                                                transform: translate(0px, -30px);
+                                            }
+                                        }
+                                    }
+
+                                    > div {
+                                        position: relative;
+                                        gap: 90px 90px;
+                                        width: 390px;
+                                        left: -175px;
+                                        transform: translate(0px, 25px);
+                                        @include flex(row, center, center);
+                                        > div {
+                                            width: 100%;
+                                            p {
+                                                color: white;
+
+                                            }
+                                            &:first-child {
+                                                p {
+                                                    font-style: normal;
+                                                    font-weight: 700;
+                                                    font-size: 22px;
+                                                    line-height: 55px;
+                                                    text-align: right;
+                                                }
+                                            }
+                                            &:last-child {
+                                                p {
+                                                    text-align: left;
+                                                    font-style: normal;
+                                                    font-weight: 300;
+                                                    font-size: 22px;
+                                                    line-height: 55px;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    &:first-child {
+                                        border-top: 1px solid white;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &.social-impact {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        margin-bottom: 300px;
+        background-color: $BLUE_GREEN;
+        z-index: 20;
+        @include flex(column, center, center);
+        &:after {
+            position: absolute;
+            content: "";
+            background-image: url("../../assets/content/ellipse-bottom-green.png");
+            left: 0;
+            bottom: -300px;
+            background-size: cover;
+            width: 100%;
+            background-repeat: no-repeat;
+            height: 300px;
+            z-index: -1;
+        }
+        > .title {
+            position: relative;
+            height: auto;
+            width: 80%;
+            margin: auto;
+            z-index: 20;
+            @include flex(column, center, center);
+            > {
+                h2 {
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 94px;
+                    line-height: 106px;
+                    text-align: center;
+                    color: #000000;
+                    b {
+                        color: $LIGHT_GREEN;
+                    }
+                }
+                h4 {
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 30px;
+                    line-height: 41px;
+                    text-align: center;
+                    color: #000000;
+                    width: 60%;
+                    padding: 40px 0;
+                }
+            }
+        }
+        .round-box {
+            width: 500px;
+            height: 500px;
+            border: 5px solid $BLACK_GREEN;
+            border-radius: 50%;
+            margin: 200px 0;
+            @include flex(column, center, center);
+
+            > div {
+                position: absolute;
+                border-radius: 50%;
+                width: 156px;
+                height: 156px;
+                border: 5px solid $BLACK_GREEN;
+                background-size: cover;
+                background-repeat: no-repeat;
+                p {
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 20px;
+                    line-height: 26px;
+                    color: #000000;
+
+                }
+                &:nth-child(1) {
+                    transform: translate(-140px, -200px);
+                    background-image: url("../../assets/social/3.jpeg");
+                    &::before {
+                        position: absolute;
+                        content: "3.";
+                        color: $BLACK_GREEN;
+                        font-style: normal;
+                        font-weight: 700;
+                        font-size: 50px;
+                        line-height: 26px;
+                        transform: translate(150px, -30px);
+                    }
+                    p {
+                        transform: translate(-210px, 10px);
+                        text-align: right;
+                        width: 180px;
+                    }
+                }
+                &:nth-child(2) {
+                    transform: translate(140px, -200px);
+                    background-image: url("../../assets/social/4.jpeg");
+                    &::before {
+                        position: absolute;
+                        content: "4.";
+                        color: $BLACK_GREEN;
+                        font-style: normal;
+                        font-weight: 700;
+                        font-size: 50px;
+                        line-height: 26px;
+                        transform: translate(150px, 100px);
+                    }
+                    p {
+                        transform: translate(170px, -40px);
+                        text-align: left;
+                        width: 180px;
+                    }
+                }
+
+                &:nth-child(3) {
+                    transform: translate(240px, 70px);
+                    background-image: url("../../assets/social/5.jpeg");
+                    &::before {
+                        position: absolute;
+                        content: "5.";
+                        color: $BLACK_GREEN;
+                        font-style: normal;
+                        font-weight: 700;
+                        font-size: 50px;
+                        line-height: 26px;
+                        transform: translate(50px, 170px);
+                    }
+                    p {
+                        transform: translate(120px, 180px);
+                        text-align: left;
+                        width: 320px;
+                    }
+                }
+
+                &:nth-child(4) {
+                    transform: translate(-240px, 70px);
+                    background-image: url("../../assets/social/2.jpeg");
+                    &::before {
+                        position: absolute;
+                        content: "2.";
+                        color: $BLACK_GREEN;
+                        font-style: normal;
+                        font-weight: 700;
+                        font-size: 50px;
+                        line-height: 26px;
+                        transform: translate(0px, -50px);
+                    }
+                    p {
+                        transform: translate(-30px, 150px);
+                        text-align: left;
+                        width: 100px;
+                    }
+                }
+
+                &:nth-child(5) {
+                    transform: translate(0, 240px);
+                    background-image: url("../../assets/social/1.jpeg");
+                    &::before {
+                        position: absolute;
+                        content: "1.";
+                        color: $BLACK_GREEN;
+                        font-style: normal;
+                        font-weight: 700;
+                        font-size: 50px;
+                        line-height: 26px;
+                        transform: translate(-50px, 90px);
+                    }
+                    p {
+                        transform: translate(-25px, 165px);
+                        text-align: center;
+                        width: 195px;
+                    }
+                }
+            }
+        }
+    }
+    &.growth-plan {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        margin-top: 400px;
+        background-color: $LIGHT_BROWN;
+        z-index: 20;
+        @include flex(column, center, flex-start);
+        &:after {
+            position: absolute;
+            content: "";
+            background-image: url("../../assets/content/ellipse-top-brown.png");
+            top: -349px;
+            background-size: cover;
+            width: 100%;
+            background-repeat: no-repeat;
+            height: 350px;
+            z-index: -1;
+        }
+        &::before {
+            position: absolute;
+            content: "";
+            top: -500px;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("../../assets/tree/detail-new-tree.png");
+            background-position: 10% 0%;
+            background-repeat: no-repeat;
+            background-size: 450px;;
+        }
+        > .title {
+            position: relative;
+            height: auto;
+            width: 60%;
+            margin: 60px auto;
+            z-index: 20;
+            @include flex(column, center, center);
+            > {
+                h2 {
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 94px;
+                    line-height: 106px;
+                    text-align: center;
+                    color: #000000;
+                    b {
+                        color: $LIGHT_GREEN;
+                    }
+                }
+                h4 {
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 30px;
+                    line-height: 41px;
+                    text-align: center;
+                    color: #000000;
+                    width: 60%;
+                    padding: 40px 0;
+                }
+            }
+        }
+        .table {
+            position: relative;
+            @include flex(row, flex-end, center);
+            width: 70%;
+            height: auto;
+            > div {
+                position: relative;
+                @include flex(column, center, center);
+                padding-right: 150px;
+                &:last-child {
+                    padding: 0;
+                }
+                &:nth-child(1) {
+                    > div {
+                        height: 50px;
+                    }
+                }
+                &:nth-child(2) {
+                    > div {
+                        height: 100px;
+                    }
+                }
+                &:nth-child(3) {
+                    > div {
+                        height: 150px;
+                    }
+                }
+                &:nth-child(4) {
+                    > div {
+                        height: 200px;
+                    }
+                }
+                &:nth-child(5) {
+                    > div {
+                        height: 250px;
+                        &::before {
+                            display: none;
+                        }
+                    }
+                }
+                > {
+                    p {
+                        font-weight: 500;
+                        font-size: 30px;
+                        line-height: 41px;
+                        text-align: center;
+                        color: $LIGHT_GREEN;
+    
+                    }
+                    span {
+                        font-weight: 500;
+                        font-size: 30px;
+                        line-height: 41px;
+                        text-align: center;
+                        color: #000000;
+                    }
+                    div {
+                        position: relative;
+                        width: 25px;
+                        margin: 40px 0;
+                        background: $LIGHT_GREEN;
+                        border-radius: 8px;
+                        &:before {
+                            content: "";
+                            position: absolute;
+                            width: 270px;
+                            height: 1px;
+                            z-index: -1;
+                            bottom: 0;
+                            background-color: #D9D9D9;
+                            left: 8px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &.complementary {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        z-index: 20;
+        @include flex(column, center, flex-start);
+        > .image {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            &::before {
+                position: absolute;
+                content: "";
+                top: -5px;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-image: url("../../assets/content/ellipse-bottom-brown.png");
+                background-position: 100% 0%;
+                background-repeat: no-repeat;
+                background-size: 100%;
+            }
+            > img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+        }
+        > .title {
+            position: relative;
+            height: auto;
+            width: 60%;
+            margin: 60px auto;
+            z-index: 20;
+            @include flex(column, center, center);
+            > {
+                img {
+                    margin-bottom: 40px;
+                }
+                h2 {
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 94px;
+                    line-height: 106px;
+                    text-align: center;
+                    color: #000000;
+                    b {
+                        color: $LIGHT_GREEN;
+                    }
+                }
+                h4 {
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 30px;
+                    line-height: 41px;
+                    text-align: center;
+                    color: #000000;
+                    width: 60%;
+                    padding: 40px 0;
+                }
+            }
+        }
+    }
+}
+
+
+

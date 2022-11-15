@@ -1,0 +1,23 @@
+// variables
+@import './variables';
+// fonts
+// @import './font/montserrat';
+
+// media query responsive
+@import './media_query';
+
+// reset css
+@import './reset';
+
+// heritage
+@import './heritage';
+
+// components/*
+@import './components/home';
+@import './components/wood';
+@import './components/button';
+@import './components/animation';
+@import './components/header';
+
+// font/inter
+@import './font/inter';

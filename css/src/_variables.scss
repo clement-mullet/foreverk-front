@@ -1,0 +1,55 @@
+$BLACK_GREEN: #2F4B26;
+$LIGHT_GREEN: #81AC37;
+$LIGHT_BROWN: #F8F1EB;
+$MEDIUM_BROWN: #AE8A5A;
+$BLUE_GREEN: #E1F5EB;
+$RED: #941212;
+$BROWN: #41220B;
+$WHITE: #FFF;
+// $TRANSITION: ease-in-out .5s;
+
+// $H1_SIZE_DESKTOP: 80px;
+// $H2_SIZE_DESKTOP: 42px;
+// $H3_SIZE_DESKTOP: 24px;
+// $H1_SIZE_MOBILE: 45px;
+// $H2_SIZE_MOBILE: 32px;
+// $A_SIZE_MENU: 16px;
+// $BUTTON_SIZE_MENU: 12px;
+
+
+* {
+    font-family: 'Inter';
+}
+
+section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 100vh;
+}
+
+@mixin flex($direction, $align, $justify) {
+    display: flex !important;
+    flex-direction: $direction !important;
+    align-items: $align !important;
+    justify-content: $justify !important;
+}
+  
+@mixin ellipsis($number) {
+    display: -webkit-box;
+    -webkit-line-clamp: $number;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+@mixin color-green-gradient {
+    background: linear-gradient(92.4deg, $BLACK_GREEN 8.26%, $LIGHT_GREEN 111.1%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+
+    
+}

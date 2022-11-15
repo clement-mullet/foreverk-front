@@ -1,0 +1,19 @@
+@import '../variables';
+
+button, a {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    padding: 16px 24px;
+    border-radius: 8px;
+    &.border-black {
+        border: 2px solid black;
+        color: black;
+    }
+    &.border-white {
+        border: 2px solid white;
+        color: white;
+    }
+}
