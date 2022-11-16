@@ -933,6 +933,15 @@ section {
                                 display: flex;
                                 flex-direction: column;
                                 justify-content: flex-end;
+                                &.active {
+                                    border-bottom: 1px solid white;
+                                    &:first-child {
+                                        border-top: 1px solid white;
+                                    }
+                                    > div {
+                                        opacity: 1;
+                                    }
+                                }
                                 &:first-child {
                                     justify-content: space-between;
                                     > div {
@@ -945,6 +954,7 @@ section {
                                 > div {
                                     position: relative;
                                     gap: 90px 90px;
+                                    transition: ease-in .5s;
                                     width: 390px;
                                     left: -175px;
                                     transform: translate(0px, 25px);

@@ -1,7 +1,9 @@
 import anime from 'animejs/lib/anime.es.js';
 
-export class eventHandler {
+let lastScrollTop = 0;
 
+export class eventHandler {
+    
 
     // EVENT
 
@@ -97,7 +99,7 @@ export class eventHandler {
                     break;
                 case "tree":
                     let content = document.querySelector('.scroll-tree > div');
-                    let transition, blocHeight;
+                    let part = clientHeight / 4;
                     switch (true) {
                         case (top >= positionTop):
 
@@ -108,52 +110,39 @@ export class eventHandler {
                                 document.querySelector('.tree > div:last-child > .line > div:nth-child(4)')
                             ];
 
-                            element.style.height = clientHeight * 5 + "px";
-                            transition = top - positionTop;
+                            element.style.height = (clientHeight * 2) + "px";
 
-                            switch (true) {
-                                case transition <= clientHeight:
-                                    // 1/4
-                                    lines[3].style.height = (clientHeight / transition * 100) + "%";
-                                    console.log("1/4");
-                                    break;
-                                case transition <= clientHeight * 2 && transition >= clientHeight:
-                                    // 2/4
-                                    console.log("2/4");
-                                    // lines[2].style.height = (transition / clientHeight * 100) + "%";
+                            let transition = top - positionTop;
 
-                                    break;
-                                case transition <= clientHeight * 3 && transition >= clientHeight * 2:
-                                    // 3/4
-                                    console.log("3/4");
-                                    // lines[1].style.height = (transition / clientHeight * 100) + "%";
-
-                                    break;
-                                case transition <= clientHeight * 4 && transition >= clientHeight * 3:
-                                    // 4/4
-                                    console.log("4/4");
-                                    // lines[0].style.height = (transition / clientHeight * 100) + "%";
-
-                                    break;
-                            
-                                default:
-                                    break;
+                            if(transition >= 0 && transition <= clientHeight) {
+                                content.style.transform = `
+                                matrix3d(
+                                    1, 0, 0, 0,
+                                    0, 1, 0, 0,
+                                    0, 0, 1, 0,
+                                    0, ${Math.abs(transition)}, 0, 1
+                                )`;
+                                switch (true) {
+                                    case transition <= part:
+                                        lines[3].style.height = transition / clientHeight * 100 + "%";
+                                        break;
+                                    case transition <= (part * 2) &&  transition >= part:
+                                        lines[2].classList.add('active');
+                                        lines[2].style.height = (transition / clientHeight * 100) - 25 + "%";
+                                        break;
+                                        case transition <= (part * 3) &&  transition >= (part * 2):
+                                        lines[1].classList.add('active');
+                                        lines[1].style.height = (transition / clientHeight * 100) - 50 + "%";
+                                        break;
+                                    case transition <= clientHeight &&  transition >= (part * 3):
+                                        lines[0].classList.add('active');
+                                        lines[0].style.height = (transition / clientHeight * 100) - 75 + "%";
+                                        break;
+                                
+                                    default:
+                                        break;
+                                }
                             }
-
-                            console.log(transition);
-
-
-                            // 950 * 4
-                            // 1000 * 4 4000
-
-                            
-                            content.style.transform = `
-                            matrix3d(
-                                1, 0, 0, 0,
-                                0, 1, 0, 0,
-                                0, 0, 1, 0,
-                                0, ${Math.abs(transition)}, 0, 1
-                            )`;
                             break;
                         case (top <= positionTop):
                             content.style.transform = null;
@@ -219,9 +208,13 @@ export class eventHandler {
     static eventScroll() {
         let wood = document.querySelector('.wood');
         let sections = eventHandler.getSections();
-        
+
+
 
         window.addEventListener('scroll', function(e) {
+            // GET DIRECTION
+            let direction = eventHandler.getDirectionScroll();
+            console.log(direction);
             let position = eventHandler.getPositionClient();
             let top = Math.abs(position.top);
 
@@ -245,6 +238,14 @@ export class eventHandler {
 
     static getClientWidth() {
         return document.documentElement.clientWidth;
+    }
+
+    static getDirectionScroll() {
+        window.addEventListener('wheel', function(event) {
+            console.log(event);
+        })
+
+
     }
 
 
