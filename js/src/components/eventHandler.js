@@ -14,36 +14,187 @@ export class eventHandler {
         
         let positionTop, positionBottom, client, top, clientHeight, clientWidth, center, difference, element;
         breakpoints.forEach(breakpoint => {
-            if(breakpoint.length > 0) {
-                // POSITION TOP CURRENT BREAKPOINT
-                positionTop = eventHandler.getAbsolutePositionYTop(breakpoint.id);
-                // POSITION BOTTOM CURRENT BREAKPOINT
-                positionBottom = eventHandler.getAbsolutePositionYBottom(breakpoint.id);
-                // GET REACT INFO CLIENT
-                client = eventHandler.getPositionClient();
-                // GET TOP CLIENT
-                top = Math.abs(client.top);
-                // GET CURRENT ELEMENT TARGET
-                element = document.getElementById(breakpoint.id);
-                // GET CLIENT HEIGHT
-                clientHeight = eventHandler.getClientHeight();
-                // GET CLIENT WIDTH
-                clientWidth = eventHandler.getClientWidth();
-    
-                switch (breakpoint.id) {
-                    case "width":
-                        if(top >= positionTop && top <= (positionBottom + 800)) {
-                            let transition = (top - positionTop) / 10;
-                            wood.style.width = (transition + 150) + "px";
-                            wood.style.height = (transition + 150) + "px";
-                            break;
-                        }
+            // POSITION TOP CURRENT BREAKPOINT
+            positionTop = eventHandler.getAbsolutePositionYTop(breakpoint.id);
+            // POSITION BOTTOM CURRENT BREAKPOINT
+            positionBottom = eventHandler.getAbsolutePositionYBottom(breakpoint.id);
+            // GET REACT INFO CLIENT
+            client = eventHandler.getPositionClient();
+            // GET TOP CLIENT
+            top = Math.abs(client.top);
+            // GET CURRENT ELEMENT TARGET
+            element = document.getElementById(breakpoint.id);
+            // GET CLIENT HEIGHT
+            clientHeight = eventHandler.getClientHeight();
+            // GET CLIENT WIDTH
+            clientWidth = eventHandler.getClientWidth();
+
+            switch (breakpoint.id) {
+                case "width":
+                    if(top >= positionTop && top <= (positionBottom + 800)) {
+                        let transition = (top - positionTop) / 10;
+                        wood.style.width = (transition + 150) + "px";
+                        wood.style.height = (transition + 150) + "px";
                         break;
-                    case "cloud":
-                        let clouds = document.querySelectorAll('.clouds__cloud');
-                        if(top >= (positionTop - 800) && top <= positionBottom) {
-                            let transition = top - (positionTop - 800);
+                    }
+                    break;
+                case "cloud":
+                    let clouds = document.querySelectorAll('.clouds__cloud');
+                    if(top >= (positionTop - 800) && top <= positionBottom) {
+                        let transition = top - (positionTop - 800);
+
+                        clouds.forEach(cloud => {
+                            let speed = (cloud.dataset.speed * 2);
+                            if(speed != undefined) {
+                                cloud.style.transform = `
+                                matrix3d(
+                                    1, 0, 0, 0,
+                                    0, 1, 0, 0,
+                                    0, 0, 1, 0,
+                                    0, ${-Math.abs(transition / speed)}, 0, 1
+                                )`;
+
+                            }
+                        });
+                    }
+
+                    break;
+                case "cloud-paulownia":
+                    
+
+                    break;
+                case "opacity":
     
+                    switch (true) {
+                        case ((top + clientHeight) >= (positionTop) && (top + clientHeight) <= positionBottom):
+                            let transition = (top + clientHeight) - positionTop;
+                            wood.style.opacity = 1 - (transition / 450);
+                            break; 
+                        case ((top + clientHeight) <= (positionTop)):
+                            wood.style.opacity = 1;
+                            break;
+                        case ((top + clientHeight) >= (positionBottom) && (top + clientHeight) <= (positionBottom + 800)):
+                            wood.style.opacity = 0;
+                            break;
+                    }
+                    break;
+                case "numbers":
+                    let numbers =  document.querySelectorAll('.numbers p i');
+                    if(((top + clientHeight)) >= (positionTop + (clientHeight / 6))) {
+                        // FIX STATUS
+                        element.classList.remove('break');
+                        
+                        numbers.forEach((number, index) => {
+                            anime({
+                                targets: numbers[index],
+                                innerHTML: [0, 80],
+                                duration: 5000,
+                                easing: 'easeInOutSine',
+                                round: 1,
+                            })
+                        });
+                    }
+                    break;
+                case "tree":
+                    let content = document.querySelector('.scroll-tree > div');
+                    let transition, blocHeight;
+                    switch (true) {
+                        case (top >= positionTop):
+
+                            let lines = [
+                                document.querySelector('.tree > div:last-child > .line > div:nth-child(1)'),
+                                document.querySelector('.tree > div:last-child > .line > div:nth-child(2)'),
+                                document.querySelector('.tree > div:last-child > .line > div:nth-child(3)'),
+                                document.querySelector('.tree > div:last-child > .line > div:nth-child(4)')
+                            ];
+
+                            element.style.height = clientHeight * 5 + "px";
+                            transition = top - positionTop;
+
+                            switch (true) {
+                                case transition <= clientHeight:
+                                    // 1/4
+                                    lines[3].style.height = (clientHeight / transition * 100) + "%";
+                                    console.log("1/4");
+                                    break;
+                                case transition <= clientHeight * 2 && transition >= clientHeight:
+                                    // 2/4
+                                    console.log("2/4");
+                                    // lines[2].style.height = (transition / clientHeight * 100) + "%";
+
+                                    break;
+                                case transition <= clientHeight * 3 && transition >= clientHeight * 2:
+                                    // 3/4
+                                    console.log("3/4");
+                                    // lines[1].style.height = (transition / clientHeight * 100) + "%";
+
+                                    break;
+                                case transition <= clientHeight * 4 && transition >= clientHeight * 3:
+                                    // 4/4
+                                    console.log("4/4");
+                                    // lines[0].style.height = (transition / clientHeight * 100) + "%";
+
+                                    break;
+                            
+                                default:
+                                    break;
+                            }
+
+                            console.log(transition);
+
+
+                            // 950 * 4
+                            // 1000 * 4 4000
+
+                            
+                            content.style.transform = `
+                            matrix3d(
+                                1, 0, 0, 0,
+                                0, 1, 0, 0,
+                                0, 0, 1, 0,
+                                0, ${Math.abs(transition)}, 0, 1
+                            )`;
+                            break;
+                        case (top <= positionTop):
+                            content.style.transform = null;
+                            break;
+                    }
+                    break;
+                case "wood-plate":
+                    switch (true) {
+                        case (((top + clientHeight)) >= (positionTop + (clientHeight / 3)) && (top + clientHeight) <= positionBottom + 600):
+                            let transition = (top - positionTop) / 4;
+                            wood.style.width = (300 - transition) + "px";
+                            wood.style.height = (300 - transition) + "px";
+                            wood.style.backgroundImage = "url('wp-content/themes/foreverk-front/assets/content/wood-plate.png')";
+                            wood.style.opacity = 1;
+                            break;
+                        case ((top + clientHeight) >= (positionTop - 800) && (top + clientHeight) <= (positionTop)):
+                            wood.style.backgroundImage = "url('wp-content/themes/foreverk-front/assets/svg/wood.svg')";
+                            wood.style.opacity = 0;
+                            break;
+                    }
+
+                    break;
+                case "line-wood":
+                    switch (true) {
+                        case (((top + clientHeight)) >= (positionTop + 800) && (top + clientHeight) <= positionBottom):
+                            let woods = document.querySelectorAll('.forest-element');
+                            let firstLines = document.querySelectorAll('.first-line');
+                            let secondLines = document.querySelectorAll('.second-line');
+                            let paragraphes = document.querySelectorAll(".wood-content-line > div p");
+                            let clouds = document.querySelectorAll('.clouds__cloud-paulownia');
+
+                            // FIX STATUS
+                            element.classList.remove('break');
+
+                            // ANIME BLOC LINE AND TEXT
+                            woods.forEach(wood => {wood.classList.add('active');});
+                            setTimeout(() => {firstLines.forEach((line, index) => {line.classList.add('active');});}, "1000")
+                            setTimeout(() => {secondLines.forEach((line, index) => {line.classList.add('active');});}, "1500")
+                            setTimeout(() => {paragraphes.forEach((p, index) => {p.classList.add('active');});}, "2000")
+
+                            let transition = top - (positionTop - 800);
                             clouds.forEach(cloud => {
                                 let speed = (cloud.dataset.speed * 2);
                                 if(speed != undefined) {
@@ -54,103 +205,13 @@ export class eventHandler {
                                         0, 0, 1, 0,
                                         0, ${-Math.abs(transition / speed)}, 0, 1
                                     )`;
-    
+
                                 }
                             });
-                        }
-    
-                        break;
-                    case "cloud-paulownia":
-                        
-    
-                        break;
-                    case "opacity":
-     
-                        switch (true) {
-                            case ((top + clientHeight) >= (positionTop) && (top + clientHeight) <= positionBottom):
-                                let transition = (top + clientHeight) - positionTop;
-                                wood.style.opacity = 1 - (transition / 450);
-                                break; 
-                            case ((top + clientHeight) <= (positionTop)):
-                                wood.style.opacity = 1;
-                                break;
-                            case ((top + clientHeight) >= (positionBottom) && (top + clientHeight) <= (positionBottom + 800)):
-                                wood.style.opacity = 0;
-                                break;
-                        }
-                        break;
-                    case "numbers":
-                        let numbers =  document.querySelectorAll('.numbers p i');
-                        if(((top + clientHeight)) >= (positionTop + (clientHeight / 6))) {
-                            // FIX STATUS
-                            element.classList.remove('break');
-                            
-                            numbers.forEach((number, index) => {
-                                anime({
-                                    targets: numbers[index],
-                                    innerHTML: [0, 80],
-                                    duration: 5000,
-                                    easing: 'easeInOutSine',
-                                    round: 1,
-                                })
-                            });
-                        }
-                        break;
-                    case "tree":
-                        break;
-                    case "wood-plate":
-                        switch (true) {
-                            case (((top + clientHeight)) >= (positionTop + (clientHeight / 3)) && (top + clientHeight) <= positionBottom + 600):
-                                let transition = (top - positionTop) / 4;
-                                wood.style.width = (300 - transition) + "px";
-                                wood.style.height = (300 - transition) + "px";
-                                wood.style.backgroundImage = "url('wp-content/themes/pulsar-theme/assets/content/wood-plate.png')";
-                                wood.style.opacity = 1;
-                                break;
-                            case ((top + clientHeight) >= (positionTop - 800) && (top + clientHeight) <= (positionTop)):
-                                wood.style.backgroundImage = "url('wp-content/themes/pulsar-theme/assets/svg/wood.svg')";
-                                wood.style.opacity = 0;
-                                break;
-                        }
-    
-                        break;
-                    case "line-wood":
-                        switch (true) {
-                            case (((top + clientHeight)) >= (positionTop + 800) && (top + clientHeight) <= positionBottom):
-                                let woods = document.querySelectorAll('.forest-element');
-                                let firstLines = document.querySelectorAll('.first-line');
-                                let secondLines = document.querySelectorAll('.second-line');
-                                let paragraphes = document.querySelectorAll(".wood-content-line > div p");
-                                let clouds = document.querySelectorAll('.clouds__cloud-paulownia');
-    
-                                // FIX STATUS
-                                element.classList.remove('break');
-    
-                                // ANIME BLOC LINE AND TEXT
-                                woods.forEach(wood => {wood.classList.add('active');});
-                                setTimeout(() => {firstLines.forEach((line, index) => {line.classList.add('active');});}, "1000")
-                                setTimeout(() => {secondLines.forEach((line, index) => {line.classList.add('active');});}, "1500")
-                                setTimeout(() => {paragraphes.forEach((p, index) => {p.classList.add('active');});}, "2000")
-    
-                                let transition = top - (positionTop - 800);
-                                clouds.forEach(cloud => {
-                                    let speed = (cloud.dataset.speed * 2);
-                                    if(speed != undefined) {
-                                        cloud.style.transform = `
-                                        matrix3d(
-                                            1, 0, 0, 0,
-                                            0, 1, 0, 0,
-                                            0, 0, 1, 0,
-                                            0, ${-Math.abs(transition / speed)}, 0, 1
-                                        )`;
-    
-                                    }
-                                });
-    
-                                break;
-                        }
-                        break;
-                }
+
+                            break;
+                    }
+                    break;
             }
         });
     }
