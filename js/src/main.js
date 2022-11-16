@@ -13,6 +13,7 @@ document.addEventListener('readystatechange', event => {
 
       break;
     case "complete":
+      menuHandler.eventMenu();
       switch (location.pathname) {
           case "/":
               eventHandler.initEvent();
@@ -20,7 +21,6 @@ document.addEventListener('readystatechange', event => {
           case "/notre-vision/":
               animationHandler.getCenterTitle();
               swiperHandler.founder();
-              menuHandler.eventMenu();
               break;
           default: 
             console.log('Route not found');
