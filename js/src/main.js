@@ -5,6 +5,7 @@ import { swiperHandler } from './components/swiperHandler';
 import { menuHandler } from './components/menuHandler';
 
 document.addEventListener('readystatechange', event => {
+  menuHandler.eventMenu();
   switch (document.readyState) {
     case "loading":
 
@@ -20,7 +21,6 @@ document.addEventListener('readystatechange', event => {
           case "/notre-vision/":
               animationHandler.getCenterTitle();
               swiperHandler.founder();
-              menuHandler.eventMenu();
               break;
           default: 
             console.log('Route not found');
