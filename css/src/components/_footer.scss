@@ -1,0 +1,28 @@
+@import '../variables';
+
+
+.footer-clouds {
+    img {
+        position: absolute;
+        z-index: 50;
+
+        &:nth-child(1) {
+            top: 10px;
+            left: 50%;
+            transform: translate(-50%, 0);
+            width: 40%;
+        }
+
+        &:nth-child(2) {
+            top: -200px;
+            left: -80px;
+            width: 55%;
+        }
+
+        &:nth-child(3) {
+            top: -200px;
+            right: 0px;
+            width: 55%;
+        }
+    }
+}
