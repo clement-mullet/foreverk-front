@@ -14,6 +14,7 @@ document.addEventListener('readystatechange', event => {
 
       break;
     case "complete":
+      menuHandler.eventMenu();
       switch (location.pathname) {
           case "/":
               eventHandler.initEvent();
