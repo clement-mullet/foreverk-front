@@ -313,7 +313,7 @@ section {
     &.think-act-big {
         position: relative;
         height: 100%;
-        z-index: 10;
+        z-index: 20;
         margin-top: 100px;
         > .wood-cut {
             position: relative;
@@ -459,7 +459,6 @@ section {
                 width: 100%;
                 height: 100vh;
                 padding: 100px 0;
-                margin-top: -1px;
                 background: $MEDIUM_BROWN;
                 @include flex(column, center, center);
 
@@ -640,152 +639,16 @@ section {
                     z-index: 7;
                 }
             }
-            > div.scroll-tree {
-                position: relative;
-                height: 110vh;
-
-                margin-bottom: 200px;
-                width: 100%;
-                margin-top: -1px;
-                background: linear-gradient(180deg, #AE8A5A 39.22%, rgba(174, 138, 90, 0) 86.4%);
-                @include flex(column, center, flex-start);
-
-                &:after {
-                    position: absolute;
-                    content: "";
-                    width: 100%;
-                    left: 0;
-                    bottom: 0;
-                    height: 600px;
-                    mix-blend-mode: darken;
-                    background-image: url("../../assets/content/grass.png");
-                    background-position: 50% bottom;
-                    background-repeat: no-repeat;
-                    background-size: cover;
-                    z-index: 3;
-                }
-                > div.title {
-                    position: relative;
-                    width: 60%;
-                    height: auto;
-                    @include flex(column, center, center);
-                    h4 {
-                        font-style: normal;
-                        font-weight: 500;
-                        font-size: 50px;
-                        line-height: 55px;
-                        text-align: center;
-                        color: #FFFFFF;
-                    }
-                    p {
-                        font-style: normal;
-                        font-weight: 300;
-                        font-size: 28px;
-                        line-height: 35px;
-                        text-align: center;
-                        color: #FFFFFF;
-
-                    }
-                }
-                > div.tree {
-                    width: 100%;
-                    height: 100%;
-                    gap: 40px;
-                    z-index: 100;
-                    @include flex(row, center, center);
-                    > div {
-                        &:first-child {
-                            width: 60%;
-                            height: 100%;
-                            @include flex(row, center, center);
-                            > img {
-                                position: absolute;
-                                width: auto;
-                                margin-bottom: 300px;
-                                bottom: 0;
-                            }
-                        }
-                        &:last-child {
-                            position: relative;
-                            width: 40%;
-                            height: 100%;
-                            @include flex(row, center, center);
-                            > .line {
-                                position: absolute;
-                                height: calc(100% - 450px);
-                                bottom: 0;
-                                margin: 150px 0 300px 0;
-                                width: 1px;
-                                background-color: white;
-                                > div {
-                                    position: relative;
-                                    height: 25%;
-                                    width: 40px;
-                                    left: -20px;
-                                    border-bottom: 1px solid white;
-                                    display: flex;
-                                    flex-direction: column;
-                                    justify-content: flex-end;
-                                    &:first-child {
-                                        justify-content: space-between;
-                                        > div {
-                                            &:first-child {
-                                                transform: translate(0px, -30px);
-                                            }
-                                        }
-                                    }
-
-                                    > div {
-                                        position: relative;
-                                        gap: 90px 90px;
-                                        width: 390px;
-                                        left: -175px;
-                                        transform: translate(0px, 25px);
-                                        @include flex(row, center, center);
-                                        > div {
-                                            width: 100%;
-                                            p {
-                                                color: white;
-
-                                            }
-                                            &:first-child {
-                                                p {
-                                                    font-style: normal;
-                                                    font-weight: 700;
-                                                    font-size: 22px;
-                                                    line-height: 55px;
-                                                    text-align: right;
-                                                }
-                                            }
-                                            &:last-child {
-                                                p {
-                                                    text-align: left;
-                                                    font-style: normal;
-                                                    font-weight: 300;
-                                                    font-size: 22px;
-                                                    line-height: 55px;
-                                                }
-                                            }
-                                        }
-                                    }
-                                    &:first-child {
-                                        border-top: 1px solid white;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
         }
     }
     &.social-impact {
         position: relative;
         width: 100%;
         height: 100%;
+        padding-top: 40px;
         margin-bottom: 300px;
         background-color: $BLUE_GREEN;
-        z-index: 20;
+        z-index: 15;
         @include flex(column, center, center);
         &:after {
             position: absolute;
@@ -950,6 +813,148 @@ section {
                         transform: translate(-25px, 165px);
                         text-align: center;
                         width: 195px;
+                    }
+                }
+            }
+        }
+    }
+    &.scroll-tree {
+        position: relative;
+        margin-top: -1px;
+        height: 100vh;
+        width: 100%;
+        z-index: 17;
+        > div {
+            height: 100vh;
+            padding-top: 60px;
+            z-index: 30;
+            background: linear-gradient(180deg, #AE8A5A 39.22%, rgba(174, 138, 90, 0) 86.4%);
+            @include flex(column, center, flex-start);
+
+            &:after {
+                position: absolute;
+                content: "";
+                width: 100%;
+                left: 0;
+                top: calc(100vh - 450px);
+                height: 600px;
+                mix-blend-mode: darken;
+                background-image: url("../../assets/content/grass.png");
+                background-position: 50% bottom;
+                background-repeat: no-repeat;
+                background-size: cover;
+                z-index: 3;
+            }
+            > div.title {
+                position: relative;
+                width: 60%;
+                height: auto;
+                z-index: 30;
+                @include flex(column, center, center);
+                h4 {
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 50px;
+                    line-height: 55px;
+                    text-align: center;
+                    color: #FFFFFF;
+                }
+                p {
+                    font-style: normal;
+                    font-weight: 300;
+                    font-size: 28px;
+                    line-height: 35px;
+                    text-align: center;
+                    color: #FFFFFF;
+
+                }
+            }
+            > div.tree {
+                width: 100%;
+                height: 100%;
+                gap: 40px;
+                z-index: 20;
+                @include flex(row, center, center);
+                > div {
+                    &:first-child {
+                        width: 60%;
+                        height: 100%;
+                        @include flex(row, center, center);
+                        > img {
+                            position: absolute;
+                            width: auto;
+                            margin-bottom: 150px;
+                            top: 15vh;
+                        }
+                    }
+                    &:last-child {
+                        position: relative;
+                        width: 40%;
+                        height: 100%;
+                        @include flex(row, center, center);
+                        > .line {
+                            position: absolute;
+                            height: calc(100% - 200px);
+                            bottom: 0;
+                            margin: 150px 0 150px 0;
+                            width: 1px;
+                            background-color: white;
+                            > div {
+                                position: relative;
+                                height: 25%;
+                                width: 40px;
+                                left: -20px;
+                                border-bottom: 1px solid white;
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: flex-end;
+                                &:first-child {
+                                    justify-content: space-between;
+                                    > div {
+                                        &:first-child {
+                                            transform: translate(0px, -30px);
+                                        }
+                                    }
+                                }
+
+                                > div {
+                                    position: relative;
+                                    gap: 90px 90px;
+                                    width: 390px;
+                                    left: -175px;
+                                    transform: translate(0px, 25px);
+                                    @include flex(row, center, center);
+                                    > div {
+                                        width: 100%;
+                                        p {
+                                            color: white;
+
+                                        }
+                                        &:first-child {
+                                            p {
+                                                font-style: normal;
+                                                font-weight: 700;
+                                                font-size: 22px;
+                                                line-height: 55px;
+                                                text-align: right;
+                                            }
+                                        }
+                                        &:last-child {
+                                            p {
+                                                text-align: left;
+                                                font-style: normal;
+                                                font-weight: 300;
+                                                font-size: 22px;
+                                                line-height: 55px;
+                                            }
+                                        }
+                                    }
+                                }
+                                &:first-child {
+                                    border-top: 1px solid white;
+                                }
+                            }
+                        }
                     }
                 }
             }
