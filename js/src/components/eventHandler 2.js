@@ -1,6 +1,6 @@
 import anime from 'animejs/lib/anime.es.js';
 
-let oldScrollY = window.scrollY;
+let lastScrollTop = 0;
 
 export class eventHandler {
     
@@ -11,7 +11,7 @@ export class eventHandler {
         wood.style.transform = "rotate(" + (Math.abs(position.top) / speed) + "deg)";
     }
 
-    static eventBreak(wood, direction) {
+    static eventBreak(wood) {
         let breakpoints = document.querySelectorAll('.break');
         
         let positionTop, positionBottom, client, top, clientHeight, clientWidth, center, difference, element;
@@ -100,16 +100,15 @@ export class eventHandler {
                 case "tree":
                     let content = document.querySelector('.scroll-tree > div');
                     let part = clientHeight / 4;
-                    let lines = [
-                        document.querySelector('.tree > div:last-child > .line > div:nth-child(1)'),
-                        document.querySelector('.tree > div:last-child > .line > div:nth-child(2)'),
-                        document.querySelector('.tree > div:last-child > .line > div:nth-child(3)'),
-                        document.querySelector('.tree > div:last-child > .line > div:nth-child(4)')
-                    ];
-                    let mainTree = document.querySelector('.main-tree');
                     switch (true) {
                         case (top >= positionTop):
 
+                            let lines = [
+                                document.querySelector('.tree > div:last-child > .line > div:nth-child(1)'),
+                                document.querySelector('.tree > div:last-child > .line > div:nth-child(2)'),
+                                document.querySelector('.tree > div:last-child > .line > div:nth-child(3)'),
+                                document.querySelector('.tree > div:last-child > .line > div:nth-child(4)')
+                            ];
 
                             element.style.height = (clientHeight * 2) + "px";
 
@@ -125,27 +124,20 @@ export class eventHandler {
                                 )`;
                                 switch (true) {
                                     case transition <= part:
-                                        mainTree.src = "wp-content/themes/foreverk-front/assets/tree/4.png";
                                         lines[3].style.height = transition / clientHeight * 100 + "%";
                                         break;
                                     case transition <= (part * 2) &&  transition >= part:
-                                        mainTree.src = "wp-content/themes/foreverk-front/assets/tree/2.png";
-                                        (direction == "down" ? lines[2].classList.add('active') : lines[2].classList.remove('active'));
+                                        lines[2].classList.add('active');
                                         lines[2].style.height = (transition / clientHeight * 100) - 25 + "%";
                                         break;
-                                    case transition <= (part * 3) &&  transition >= (part * 2):
-                                        mainTree.src = "wp-content/themes/foreverk-front/assets/tree/3.png";
-                                        (direction == "down" ? lines[1].classList.add('active') : lines[1].classList.remove('active'));
+                                        case transition <= (part * 3) &&  transition >= (part * 2):
+                                        lines[1].classList.add('active');
                                         lines[1].style.height = (transition / clientHeight * 100) - 50 + "%";
                                         break;
                                     case transition <= clientHeight &&  transition >= (part * 3):
-                                        mainTree.src = "wp-content/themes/foreverk-front/assets/tree/4.png";
-                                        (direction == "down" ? lines[0].classList.add('active') : lines[0].classList.remove('active'));
+                                        lines[0].classList.add('active');
                                         lines[0].style.height = (transition / clientHeight * 100) - 75 + "%";
                                         break;
-                                    // case transition > clientHeight:
-                                    //     mainTree.src = "wp-content/themes/foreverk-front/assets/tree/5.png";
-                                    //     break;
                                 
                                     default:
                                         break;
@@ -153,10 +145,6 @@ export class eventHandler {
                             }
                             break;
                         case (top <= positionTop):
-                            lines.forEach(line => {
-                                line.style.height = 0 + "px";
-                            });
-                            mainTree.src = "wp-content/themes/foreverk-front/assets/tree/1.png";
                             content.style.transform = null;
                             break;
                     }
@@ -223,20 +211,18 @@ export class eventHandler {
 
 
 
-        window.addEventListener('scroll', function(event) {
-
-
-
+        window.addEventListener('scroll', function(e) {
             // GET DIRECTION
             let direction = eventHandler.getDirectionScroll();
+            console.log(direction);
             let position = eventHandler.getPositionClient();
             let top = Math.abs(position.top);
+
             // EVENT ROTATE EVERY TIME
             eventHandler.eventRotate(position, wood, 6);
 
             // EVENT BREAKPOINT PAGE
-            eventHandler.eventBreak(wood, direction);
-            oldScrollY = window.scrollY;
+            eventHandler.eventBreak(wood);
 
         })
     }
@@ -255,11 +241,11 @@ export class eventHandler {
     }
 
     static getDirectionScroll() {
-        if(oldScrollY < window.scrollY){
-            return "down";
-        } else {
-            return "up";
-        }
+        window.addEventListener('wheel', function(event) {
+            console.log(event);
+        })
+
+
     }
 
 
