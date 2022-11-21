@@ -1,4 +1,5 @@
 import anime from 'animejs/lib/anime.es.js';
+import LocomotiveScroll from 'locomotive-scroll';
 
 let oldScrollY = window.scrollY;
 
@@ -110,50 +111,48 @@ export class eventHandler {
                     switch (true) {
                         case (top >= positionTop):
 
-
+                            wood.style.opacity = 0;
                             element.style.height = (clientHeight * 2) + "px";
 
                             let transition = top - positionTop;
 
                             if(transition >= 0 && transition <= clientHeight) {
-                                content.style.transform = `
-                                matrix3d(
-                                    1, 0, 0, 0,
-                                    0, 1, 0, 0,
-                                    0, 0, 1, 0,
-                                    0, ${Math.abs(transition)}, 0, 1
-                                )`;
+                                content.style.position = "fixed";
+                                content.style.top = "0px";
+
                                 switch (true) {
                                     case transition <= part:
-                                        mainTree.src = "wp-content/themes/foreverk-front/assets/tree/1.png";
+                                        mainTree.src.indexOf('1.png') > -1 ? 0 : mainTree.src = "wp-content/themes/foreverk-front/assets/tree/1.png";
                                         lines[3].style.height = transition / clientHeight * 100 + "%";
                                         break;
                                     case transition <= (part * 2) &&  transition >= part:
-                                        mainTree.src = "wp-content/themes/foreverk-front/assets/tree/2.png";
+                                        mainTree.src.indexOf('2.png') > -1 ? 0 : mainTree.src = "wp-content/themes/foreverk-front/assets/tree/2.png";
                                         (direction == "down" ? lines[2].classList.add('active') : lines[2].classList.remove('active'));
                                         lines[2].style.height = (transition / clientHeight * 100) - 25 + "%";
                                         break;
                                     case transition <= (part * 3) &&  transition >= (part * 2):
-                                        mainTree.src = "wp-content/themes/foreverk-front/assets/tree/3.png";
+                                        mainTree.src.indexOf('3.png') > -1 ? 0 : mainTree.src = "wp-content/themes/foreverk-front/assets/tree/3.png";
                                         (direction == "down" ? lines[1].classList.add('active') : lines[1].classList.remove('active'));
                                         lines[1].style.height = (transition / clientHeight * 100) - 50 + "%";
                                         break;
                                     case transition <= clientHeight &&  transition >= (part * 3):
-                                        mainTree.src = "wp-content/themes/foreverk-front/assets/tree/4.png";
+                                        mainTree.src.indexOf('4.png') > -1 ? 0 : mainTree.src = "wp-content/themes/foreverk-front/assets/tree/4.png";
                                         (direction == "down" ? lines[0].classList.add('active') : lines[0].classList.remove('active'));
                                         lines[0].style.height = (transition / clientHeight * 100) - 75 + "%";
                                         break;
-                                    default:
-                                        break;
                                 }
+                            } else {
+                                content.style.position = "relative";
+                                content.style.top = clientHeight + "px";
                             }
                             break;
                         case (top <= positionTop):
                             lines.forEach(line => {
                                 line.style.height = 0 + "px";
                             });
-                            mainTree.src = "wp-content/themes/foreverk-front/assets/tree/1.png";
-                            content.style.transform = null;
+                            mainTree.src.indexOf('1.png') > -1 ? 0 : mainTree.src = "wp-content/themes/foreverk-front/assets/tree/1.png";
+                            content.style.position = "relative";
+
                             break;
                     }
                     break;
@@ -167,22 +166,19 @@ export class eventHandler {
                         document.querySelector('.round-box > div:nth-child(4)'),
                         document.querySelector('.round-box > div:nth-child(5)')
                     ];
+
                     switch (true) {
                         case (top >= positionTop):
 
 
                             element.style.height = (clientHeight * 2) + "px";
+                            wood.style.opacity = 1;
 
                             let transition = top - positionTop;
 
                             if(transition >= 0 && transition <= clientHeight) {
-                                content.style.transform = `
-                                matrix3d(
-                                    1, 0, 0, 0,
-                                    0, 1, 0, 0,
-                                    0, 0, 1, 0,
-                                    0, ${Math.abs(transition)}, 0, 1
-                                )`;
+                                content.style.position = "fixed";
+                                content.style.top = "200px";
                                 switch (true) {
                                     case transition <= part:
                                         (direction == "down" ? lines[4].classList.add('active') : lines[4].classList.remove('active'));
@@ -203,22 +199,45 @@ export class eventHandler {
                                     default:
                                         break;
                                 }
+                            } else {
+                                content.style.position = "relative";
+                                content.style.top = clientHeight + "px";
                             }
                             break;
                         case (top <= positionTop):
-                            content.style.transform = null;
+                            content.style.position = "relative";
+                            content.style.top = "0px";
+
                             break;
                     }
+                    break;
+                case "technical":
+                    let lineWood = document.querySelector('.line-wood');
+
+                    switch (true) {
+                        case ((clientHeight / 2) + lineWood.getBoundingClientRect().height) >= lineWood.getBoundingClientRect().top:
+                            let transition = Math.abs(((clientHeight / 2) + lineWood.getBoundingClientRect().height) - lineWood.getBoundingClientRect().top);
+                            console.log(transition / clientHeight * 4);
+                            wood.style.opacity = 1 - transition / clientHeight * 4;
+                            
+                            break;
+                    
+                        default:
+                            break;
+                    }
+
+                    element.style.height = (clientHeight * 2) + "px";
+
                     break;
                 case "table":
                     content = document.querySelector('.growth-plan > div');
                     part = clientHeight / 5;
                     lines = [
-                        document.querySelector('.table > div:nth-child(1) > div'),
-                        document.querySelector('.table > div:nth-child(2) > div'),
-                        document.querySelector('.table > div:nth-child(3) > div'),
-                        document.querySelector('.table > div:nth-child(4) > div'),
-                        document.querySelector('.table > div:nth-child(5) > div')
+                        document.querySelector('.table > div:nth-child(1) .line'),
+                        document.querySelector('.table > div:nth-child(2) .line'),
+                        document.querySelector('.table > div:nth-child(3) .line'),
+                        document.querySelector('.table > div:nth-child(4) .line'),
+                        document.querySelector('.table > div:nth-child(5) .line')
                     ];
                     switch (true) {
                         case (top >= positionTop):
@@ -229,40 +248,41 @@ export class eventHandler {
                             let transition = top - positionTop;
 
                             if(transition >= 0 && transition <= clientHeight) {
-                                content.style.transform = `
-                                matrix3d(
-                                    1, 0, 0, 0,
-                                    0, 1, 0, 0,
-                                    0, 0, 1, 0,
-                                    0, ${Math.abs(transition)}, 0, 1
-                                )`;
+                                content.style.position = "fixed";
+                                content.style.top = "0px";
                                 switch (true) {
                                     case transition <= part:
-                                        lines[0].style.height = transition / clientHeight * 250 + "px";
+                                        lines[1].style.height = 0 + "%";
+                                        lines[0].style.height = transition / clientHeight * 500 + "%";
                                         break;
                                     case transition <= (part * 2) &&  transition >= part:
-                                        lines[1].style.height = (transition / clientHeight * 500) - 100 + "px";
-                                        console.log("2");
+                                        lines[2].style.height = 0 + "%";
+                                        lines[1].style.height = (transition / clientHeight * 500) - 100 + "%";
                                         break;
                                     case transition <= (part * 3) &&  transition >= (part * 2):
-                                        lines[2].style.height = (transition / clientHeight * 500) - 150 + "px";
-                                        console.log("3");
+                                        lines[3].style.height = 0 + "%";
+                                        lines[2].style.height = (transition / clientHeight * 500) - 200 + "%";
                                         break;
                                     case transition <= (part * 4) &&  transition >= (part * 3):
-                                        lines[3].style.height = (transition / clientHeight * 500) - 200 + "px";
-                                        console.log("4");
+                                        lines[4].style.height = 0 + "%";
+                                        lines[3].style.height = (transition / clientHeight * 500) - 300 + "%";
                                         break;
                                     case transition <= clientHeight &&  transition >= (part * 4):
-                                        // (direction == "down" ? lines[2].classList.add('active') : lines[2].classList.remove('active'));
-                                        console.log("5");
+                                        lines[4].style.height = (transition / clientHeight * 500) - 400 + "%";
                                         break;
                                     default:
                                         break;
                                 }
+                            } else {
+                                content.style.position = "relative";
+                                content.style.top = clientHeight + "px";
                             }
                             break;
                         case (top <= positionTop):
-                            content.style.transform = null;
+                            content.style.position = "relative";
+                            content.style.top = "0px";
+                            lines[0].style.height = 0 + "%";
+
                             break;
                     }
                     break;
@@ -293,6 +313,7 @@ export class eventHandler {
 
                             // FIX STATUS
                             element.classList.remove('break');
+                            wood.style.opacity = 0;
 
                             // ANIME BLOC LINE AND TEXT
                             woods.forEach(wood => {wood.classList.add('active');});
@@ -380,6 +401,15 @@ export class eventHandler {
     }
 
     static initEvent() {
+        document.querySelector('body').setAttribute("data-scroll-container", "");
+        const scroll = new LocomotiveScroll({
+            el: document.querySelector('[data-scroll-container]'),
+            smooth: true,
+            smoothMobile: true,
+            getDirection: true,
+            getSpeed: true,
+        });
+
         window.scrollTo(0, 0);
         eventHandler.eventScroll();
     }
