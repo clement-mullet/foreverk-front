@@ -1,5 +1,4 @@
 import anime from 'animejs/lib/anime.es.js';
-import LocomotiveScroll from 'locomotive-scroll';
 
 let oldScrollY = window.scrollY;
 
@@ -401,15 +400,6 @@ export class eventHandler {
     }
 
     static initEvent() {
-        document.querySelector('body').setAttribute("data-scroll-container", "");
-        const scroll = new LocomotiveScroll({
-            el: document.querySelector('[data-scroll-container]'),
-            smooth: true,
-            smoothMobile: true,
-            getDirection: true,
-            getSpeed: true,
-        });
-
         window.scrollTo(0, 0);
         eventHandler.eventScroll();
     }
