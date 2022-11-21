@@ -77,24 +77,32 @@
         position: relative;
         margin-left: 163px;
         li {
+            width: fit-content;
+            &:hover {
+                a {
+                    padding-left: 40px !important;
+                    &::before {
+                        left: 8px;
+                        opacity: 1 !important;
+                    }
+                    &::after {
+                        position: absolute;
+                        width: calc(100% - 40px);
+                        height: 3px;
+                        background: linear-gradient(92.4deg, #2F4B26 8.26%, #81AC37 111.1%) !important;
+                    }
+                }
+            }
             a {
                 position: relative;
                 padding: 0 !important;
                 width: fit-content !important;
-                &:hover {
-                    margin-left: 40px;
-                    &::before {
-                        left: -32px;
-                        opacity: 1 !important;
-                    }
-                }
-                &::after {
-                    content: "";
-                    position: absolute;
-                    width: 100%;
-                    height: 2px;
-                    background-color: red;
-                }
+                background: linear-gradient(92.4deg, #2F4B26 8.26%, #81AC37 111.1%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                text-fill-color: transparent;
+
                 &::before {
                     content: "";
                     position: absolute;
@@ -103,9 +111,14 @@
                     width: 13px;
                     margin-right: 20px;
                     left: -50px;
-            
-                    opacity: 0 !important;
+                    pointer-events: none;
                     background-color: transparent !important;
+                }
+                
+                &::after {
+                    content: "";
+                    width: 0px;
+                    top: 55px;
                 }
             }
         }
