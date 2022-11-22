@@ -14,7 +14,7 @@ export class eventHandler {
     static eventBreak(wood, direction) {
         let breakpoints = document.querySelectorAll('.break');
         
-        let positionTop, positionBottom, client, top, clientHeight, clientWidth, center, difference, element;
+        let positionTop, positionBottom, client, top, clientHeight, clientWidth, center, difference, element, content, part, lines, mainTree;
         breakpoints.forEach(breakpoint => {
             // POSITION TOP CURRENT BREAKPOINT
             positionTop = eventHandler.getAbsolutePositionYTop(breakpoint.id);
@@ -98,15 +98,146 @@ export class eventHandler {
                     }
                     break;
                 case "tree":
-                    let content = document.querySelector('.scroll-tree > div');
-                    let part = clientHeight / 4;
-                    let lines = [
+                    content = document.querySelector('.scroll-tree > div');
+                    part = clientHeight / 4;
+                    lines = [
                         document.querySelector('.tree > div:last-child > .line > div:nth-child(1)'),
                         document.querySelector('.tree > div:last-child > .line > div:nth-child(2)'),
                         document.querySelector('.tree > div:last-child > .line > div:nth-child(3)'),
                         document.querySelector('.tree > div:last-child > .line > div:nth-child(4)')
                     ];
-                    let mainTree = document.querySelector('.main-tree');
+                    mainTree = document.querySelector('.main-tree');
+                    switch (true) {
+                        case (top >= positionTop):
+
+                            wood.style.opacity = 0;
+                            element.style.height = (clientHeight * 2) + "px";
+
+                            let transition = top - positionTop;
+
+                            if(transition >= 0 && transition <= clientHeight) {
+                                content.style.position = "fixed";
+                                content.style.top = "0px";
+
+                                switch (true) {
+                                    case transition <= part:
+                                        mainTree.src.indexOf('1.png') > -1 ? 0 : mainTree.src = "wp-content/themes/foreverk-front/assets/tree/1.png";
+                                        lines[3].style.height = transition / clientHeight * 100 + "%";
+                                        break;
+                                    case transition <= (part * 2) &&  transition >= part:
+                                        mainTree.src.indexOf('2.png') > -1 ? 0 : mainTree.src = "wp-content/themes/foreverk-front/assets/tree/2.png";
+                                        (direction == "down" ? lines[2].classList.add('active') : lines[2].classList.remove('active'));
+                                        lines[2].style.height = (transition / clientHeight * 100) - 25 + "%";
+                                        break;
+                                    case transition <= (part * 3) &&  transition >= (part * 2):
+                                        mainTree.src.indexOf('3.png') > -1 ? 0 : mainTree.src = "wp-content/themes/foreverk-front/assets/tree/3.png";
+                                        (direction == "down" ? lines[1].classList.add('active') : lines[1].classList.remove('active'));
+                                        lines[1].style.height = (transition / clientHeight * 100) - 50 + "%";
+                                        break;
+                                    case transition <= clientHeight &&  transition >= (part * 3):
+                                        mainTree.src.indexOf('4.png') > -1 ? 0 : mainTree.src = "wp-content/themes/foreverk-front/assets/tree/4.png";
+                                        (direction == "down" ? lines[0].classList.add('active') : lines[0].classList.remove('active'));
+                                        lines[0].style.height = (transition / clientHeight * 100) - 75 + "%";
+                                        break;
+                                }
+                            } else {
+                                content.style.position = "relative";
+                                content.style.top = clientHeight + "px";
+                            }
+                            break;
+                        case (top <= positionTop):
+                            lines.forEach(line => {
+                                line.style.height = 0 + "px";
+                            });
+                            mainTree.src.indexOf('1.png') > -1 ? 0 : mainTree.src = "wp-content/themes/foreverk-front/assets/tree/1.png";
+                            content.style.position = "relative";
+
+                            break;
+                    }
+                    break;
+                case "round-box":
+                    content = document.querySelector('.social-box > div');
+                    part = clientHeight / 5;
+                    lines = [
+                        document.querySelector('.round-box > div:nth-child(1)'),
+                        document.querySelector('.round-box > div:nth-child(2)'),
+                        document.querySelector('.round-box > div:nth-child(3)'),
+                        document.querySelector('.round-box > div:nth-child(4)'),
+                        document.querySelector('.round-box > div:nth-child(5)')
+                    ];
+
+                    switch (true) {
+                        case (top >= positionTop):
+
+
+                            element.style.height = (clientHeight * 2) + "px";
+                            wood.style.opacity = 1;
+
+                            let transition = top - positionTop;
+
+                            if(transition >= 0 && transition <= clientHeight) {
+                                content.style.position = "fixed";
+                                content.style.top = "200px";
+                                switch (true) {
+                                    case transition <= part:
+                                        (direction == "down" ? lines[4].classList.add('active') : lines[4].classList.remove('active'));
+                                        break;
+                                    case transition <= (part * 2) &&  transition >= part:
+                                        (direction == "down" ? lines[3].classList.add('active') : lines[3].classList.remove('active'));
+                                        break;
+                                    case transition <= (part * 3) &&  transition >= (part * 2):
+                                        (direction == "down" ? lines[0].classList.add('active') : lines[0].classList.remove('active'));
+                                        console.log("3");
+                                        break;
+                                    case transition <= (part * 4) &&  transition >= (part * 3):
+                                        (direction == "down" ? lines[1].classList.add('active') : lines[1].classList.remove('active'));
+                                        break;
+                                    case transition <= clientHeight &&  transition >= (part * 4):
+                                        (direction == "down" ? lines[2].classList.add('active') : lines[2].classList.remove('active'));
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            } else {
+                                content.style.position = "relative";
+                                content.style.top = clientHeight + "px";
+                            }
+                            break;
+                        case (top <= positionTop):
+                            content.style.position = "relative";
+                            content.style.top = "0px";
+
+                            break;
+                    }
+                    break;
+                case "technical":
+                    let lineWood = document.querySelector('.line-wood');
+
+                    switch (true) {
+                        case ((clientHeight / 2) + lineWood.getBoundingClientRect().height) >= lineWood.getBoundingClientRect().top:
+                            let transition = Math.abs(((clientHeight / 2) + lineWood.getBoundingClientRect().height) - lineWood.getBoundingClientRect().top);
+                            console.log(transition / clientHeight * 4);
+                            wood.style.opacity = 1 - transition / clientHeight * 4;
+                            
+                            break;
+                    
+                        default:
+                            break;
+                    }
+
+                    element.style.height = (clientHeight * 2) + "px";
+
+                    break;
+                case "table":
+                    content = document.querySelector('.growth-plan > div');
+                    part = clientHeight / 5;
+                    lines = [
+                        document.querySelector('.table > div:nth-child(1) .line'),
+                        document.querySelector('.table > div:nth-child(2) .line'),
+                        document.querySelector('.table > div:nth-child(3) .line'),
+                        document.querySelector('.table > div:nth-child(4) .line'),
+                        document.querySelector('.table > div:nth-child(5) .line')
+                    ];
                     switch (true) {
                         case (top >= positionTop):
 
@@ -116,48 +247,39 @@ export class eventHandler {
                             let transition = top - positionTop;
 
                             if(transition >= 0 && transition <= clientHeight) {
-                                content.style.transform = `
-                                matrix3d(
-                                    1, 0, 0, 0,
-                                    0, 1, 0, 0,
-                                    0, 0, 1, 0,
-                                    0, ${Math.abs(transition)}, 0, 1
-                                )`;
+                                content.style.position = "fixed";
+                                content.style.top = "0px";
                                 switch (true) {
                                     case transition <= part:
-                                        mainTree.src = "wp-content/themes/foreverk-front/assets/tree/4.png";
-                                        lines[3].style.height = transition / clientHeight * 100 + "%";
+                                        lines[1].style.height = 0 + "%";
+                                        lines[0].style.height = transition / clientHeight * 500 + "%";
                                         break;
                                     case transition <= (part * 2) &&  transition >= part:
-                                        mainTree.src = "wp-content/themes/foreverk-front/assets/tree/2.png";
-                                        (direction == "down" ? lines[2].classList.add('active') : lines[2].classList.remove('active'));
-                                        lines[2].style.height = (transition / clientHeight * 100) - 25 + "%";
+                                        lines[2].style.height = 0 + "%";
+                                        lines[1].style.height = (transition / clientHeight * 500) - 100 + "%";
                                         break;
                                     case transition <= (part * 3) &&  transition >= (part * 2):
-                                        mainTree.src = "wp-content/themes/foreverk-front/assets/tree/3.png";
-                                        (direction == "down" ? lines[1].classList.add('active') : lines[1].classList.remove('active'));
-                                        lines[1].style.height = (transition / clientHeight * 100) - 50 + "%";
+                                        lines[3].style.height = 0 + "%";
+                                        lines[2].style.height = (transition / clientHeight * 500) - 200 + "%";
                                         break;
-                                    case transition <= clientHeight &&  transition >= (part * 3):
-                                        mainTree.src = "wp-content/themes/foreverk-front/assets/tree/4.png";
-                                        (direction == "down" ? lines[0].classList.add('active') : lines[0].classList.remove('active'));
-                                        lines[0].style.height = (transition / clientHeight * 100) - 75 + "%";
+                                    case transition <= (part * 4) &&  transition >= (part * 3):
+                                        lines[4].style.height = 0 + "%";
+                                        lines[3].style.height = (transition / clientHeight * 500) - 300 + "%";
                                         break;
-                                    // case transition > clientHeight:
-                                    //     mainTree.src = "wp-content/themes/foreverk-front/assets/tree/5.png";
-                                    //     break;
-                                
-                                    default:
+                                    case transition <= clientHeight &&  transition >= (part * 4):
+                                        lines[4].style.height = (transition / clientHeight * 500) - 400 + "%";
                                         break;
                                 }
+                            } else {
+                                content.style.position = "relative";
+                                content.style.top = clientHeight + "px";
                             }
                             break;
                         case (top <= positionTop):
-                            lines.forEach(line => {
-                                line.style.height = 0 + "px";
-                            });
-                            mainTree.src = "wp-content/themes/foreverk-front/assets/tree/1.png";
-                            content.style.transform = null;
+                            content.style.position = "relative";
+                            content.style.top = "0px";
+                            lines[0].style.height = 0 + "%";
+
                             break;
                     }
                     break;
@@ -188,6 +310,7 @@ export class eventHandler {
 
                             // FIX STATUS
                             element.classList.remove('break');
+                            wood.style.opacity = 0;
 
                             // ANIME BLOC LINE AND TEXT
                             woods.forEach(wood => {wood.classList.add('active');});
@@ -224,8 +347,6 @@ export class eventHandler {
 
 
         window.addEventListener('scroll', function(event) {
-
-
 
             // GET DIRECTION
             let direction = eventHandler.getDirectionScroll();
