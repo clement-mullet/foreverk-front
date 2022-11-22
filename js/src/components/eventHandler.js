@@ -269,8 +269,6 @@ export class eventHandler {
                                     case transition <= clientHeight &&  transition >= (part * 4):
                                         lines[4].style.height = (transition / clientHeight * 500) - 400 + "%";
                                         break;
-                                    default:
-                                        break;
                                 }
                             } else {
                                 content.style.position = "relative";
