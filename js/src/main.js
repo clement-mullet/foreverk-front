@@ -1,7 +1,6 @@
 import { generalHandler } from './components/generalHandler';
 import { eventHandler } from './components/eventHandler';
 import { animationHandler } from './components/animationHandler';
-import { swiperHandler } from './components/swiperHandler';
 import { menuHandler } from './components/menuHandler';
 import { usagesHandler } from './components/usagesHandler';
 import { sliderHandler } from './components/sliderHandler';

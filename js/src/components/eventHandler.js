@@ -1,4 +1,5 @@
 import anime from 'animejs/lib/anime.es.js';
+import { utilsHandler } from './utilsHandler';
 
 let oldScrollY = window.scrollY;
 
@@ -14,7 +15,7 @@ export class eventHandler {
     static eventBreak(wood, direction) {
         let breakpoints = document.querySelectorAll('.break');
         
-        let positionTop, positionBottom, client, top, clientHeight, clientWidth, center, difference, element, content, part, lines, mainTree;
+        let positionTop, positionBottom, client, top, clientHeight, clientWidth, center, difference, element, content, part, lines, mainTree, bodyRect;
         breakpoints.forEach(breakpoint => {
             // POSITION TOP CURRENT BREAKPOINT
             positionTop = eventHandler.getAbsolutePositionYTop(breakpoint.id);
@@ -30,6 +31,8 @@ export class eventHandler {
             clientHeight = eventHandler.getClientHeight();
             // GET CLIENT WIDTH
             clientWidth = eventHandler.getClientWidth();
+            // GET BODY REACT
+            bodyRect = document.body.getBoundingClientRect();
 
             switch (breakpoint.id) {
                 case "width":
@@ -212,20 +215,82 @@ export class eventHandler {
                     break;
                 case "technical":
                     let lineWood = document.querySelector('.line-wood');
+                    let contentWood = document.querySelector('.content-wood');
+                    let contentShow = document.querySelectorAll('.content-show');
+
+                    console.log((contentWood.getBoundingClientRect().top + lineWood.getBoundingClientRect().height / 2) - bodyRect.top);
+                    console.log(top + clientHeight / 2);
+
+                    if(((contentWood.getBoundingClientRect().top + lineWood.getBoundingClientRect().height / 2) - bodyRect.top) <= top + clientHeight / 2) {
+
+
+                        let transition = (clientHeight / 2) - contentWood.getBoundingClientRect().top;
+                        lineWood.style.position != "fixed" ? lineWood.style.position = "fixed" : 0;
+                        wood.style.opacity != 0 ? wood.style.opacity = 0 : 0;
+                        lineWood.style.top == "0px" ? lineWood.style.top = (clientHeight / 2) + "px" : 0;
+                        lineWood.style.left == "0px" ? lineWood.style.left = ((clientWidth / 2) - (lineWood.getBoundingClientRect().width / 2)) + "px" : 0;
+                        
+                        if(lineWood.style.opacity > 0.1 && lineWood.src.indexOf("2D") > 0) {
+                            lineWood.style.opacity >= 0.1 ? lineWood.style.opacity = 1 - (transition / clientHeight * 4) : 0;
+                            if (lineWood.style.opacity < 0.1) {
+                                lineWood.src = "wp-content/themes/foreverk-front/assets/svg/woodLite3D.png";
+                            }
+                        } else if(lineWood.src.indexOf("3D") > 0) {
+                            lineWood.style.opacity <= 1 || direction == "up" ? lineWood.style.opacity = 0 + (Math.abs(transition / clientHeight * 4) - 1) : 0;
+
+                            if(lineWood.style.opacity >= 1) {
+                                switch (true) {
+                                    case Math.abs(transition / clientHeight * 15) - 2 <= 15:
+                                        contentShow.forEach((content, index) => {
+                                            content.classList.remove('active');
+                                        })
+                                        lineWood.style.transform = "rotate(" + (Math.abs(transition / clientHeight * 15) - 2) + "deg)";
+                                        lineWood.style.width = 275 + Math.abs(transition / clientHeight * 200) - 2 + "px";
+                                        lineWood.style.height = 275 + Math.abs(transition / clientHeight * 200) - 2 + "px";
+                                        // lineWood.style.top = (clientHeight / 2) - (lineWood.getBoundingClientRect().height / 2) + "px";
+                                        break;
+
+                                    case Math.abs(transition / clientHeight * 15) - 2 >= 15:
+                                            contentShow.forEach((content, index) => {
+                                                content.classList.add('active');
+                                                switch (index) {
+                                                    case 0:
+                                                        content.style.top = (clientHeight / 2) + "px";
+                                                        content.style.left = ((clientWidth / 2) -  lineWood.getBoundingClientRect().width) + "px";
+                                                        break;
+                                                    case 1:
+                                                        content.style.top = ((clientHeight / 2) - 200) + "px";
+                                                        content.style.left = ((clientWidth / 2) + (lineWood.getBoundingClientRect().width / 2)) + "px";
+                                                        break;
+                                                    case 2:
+                                                        content.style.top = ((clientHeight / 2) + 100) + "px";
+                                                        content.style.left = ((clientWidth / 2) + (lineWood.getBoundingClientRect().width / 2)) + "px";
+                                                        break;
+                                                }
+                                            });
+                                        break;
+                                }
+                            }
+                        }
+                    }
 
                     switch (true) {
-                        case ((clientHeight / 2) + lineWood.getBoundingClientRect().height) >= lineWood.getBoundingClientRect().top:
-                            let transition = Math.abs(((clientHeight / 2) + lineWood.getBoundingClientRect().height) - lineWood.getBoundingClientRect().top);
-                            console.log(transition / clientHeight * 4);
-                            wood.style.opacity = 1 - transition / clientHeight * 4;
-                            
+                        case ((clientHeight / 2) + contentWood.getBoundingClientRect().height) >= contentWood.getBoundingClientRect().top && ((clientHeight / 2) + contentWood.getBoundingClientRect().height) <= contentWood.getBoundingClientRect().bottom:
+                            let transition = Math.abs(((clientHeight / 2) + contentWood.getBoundingClientRect().height) - contentWood.getBoundingClientRect().top);
+                            wood.style.opacity > 0 ? wood.style.opacity = 1 - (transition / clientHeight * 4) : 0;
                             break;
-                    
+                        case (contentWood.getBoundingClientRect().top - bodyRect.top) >= top + clientHeight / 2:
+                            lineWood.style.position != "relative" ? lineWood.style.position = "relative" : 0;
+                            lineWood.style.top = "0px";
+                            lineWood.style.left = "0px";
+                            wood.style.opacity != 1 ? lineWood.style.opacity = 1 : 0;
+                                
+                            break;
                         default:
                             break;
                     }
 
-                    element.style.height = (clientHeight * 2) + "px";
+                    element.style.height = (clientHeight * 3) + "px";
 
                     break;
                 case "table":
