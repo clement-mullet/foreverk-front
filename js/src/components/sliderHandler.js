@@ -79,12 +79,23 @@ export class sliderHandler {
     }
 
     static placeCursor(index, image) {
+        let sliderArrow = document.querySelectorAll('.founders-slider i');
         let foundersImages = document.querySelectorAll('.founders-slider img');
         let left = foundersImages[index].x - (foundersImages[index].offsetWidth / 2) + 25;
         let cursor = document.querySelectorAll('.bitognio');
         cursor[0].style.left = left + "px";
-        console.log(foundersImages[index].x);
-        console.log(foundersImages[index].offsetWidth / 2);
-        console.log(left);
+        sliderArrow[0].addEventListener('click', function() {
+            console.log('left')
+            let leftOffset = (foundersImages[index].offsetLeft + foundersImages[index].offsetWidth  + 25); 
+            console.log(leftOffset);
+            cursor[0].style.left += leftOffset + "px";
+        })
+        sliderArrow[1].addEventListener('click', function() {
+            console.log('right')
+            let rightOffset = (foundersImages[index].offsetLeft + foundersImages[index].offsetWidth + 25);
+            console.log(rightOffset);
+            cursor[0].style.left += rightOffset + "px";
+        })
+        console.log(foundersImages);
     }
 }
