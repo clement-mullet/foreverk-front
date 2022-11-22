@@ -32,6 +32,8 @@ document.addEventListener('readystatechange', event => {
             break;
           case "/le-projet-forever-k/":
             impactHandler.switchTabs();
+            eventHandler.initEvent();
+
             break;
           default: 
             console.log('Route not found');

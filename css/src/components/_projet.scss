@@ -9,3 +9,141 @@
 .impact-second-tab {
     display: none;
 }
+
+.growth-projct {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin-top: 400px;
+    z-index: 20;
+    @include flex(column, center, flex-start);
+    > div {
+        &::before {
+            position: absolute;
+            content: "";
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("../../assets/tree/detail-new-tree.png");
+            background-position: -15% 25%;
+            background-repeat: no-repeat;
+            background-size: 450px;;
+        }
+        .title {
+            position: relative;
+            height: auto;
+            width: 63%;
+            margin: 20px auto;
+            z-index: 20;
+            @include flex(column, center, center);
+            > {
+                h2 {
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 65px;
+                    text-align: center;
+                }
+                h4 {
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 30px;
+                    line-height: 41px;
+                    text-align: center;
+                    color: #000000;
+                    width: 85%;
+                    padding: 16px 0;
+                }
+                p {
+                    font-size: 18px;
+                    line-height: 32px;
+                    text-align: center;
+                    width: 96%;
+                }
+            }
+        }
+        .table {
+            position: relative;
+            @include flex(row, flex-end, center);
+            width: 950px;
+            height: auto;
+            margin: 0 auto 80px auto;
+            margin-top: 100px;
+            > div {
+                position: relative;
+                @include flex(column, center, center);
+                padding-right: 150px;
+                &:last-child {
+                    padding: 0;
+                }
+                &:nth-child(1) {
+                    > div {
+                        height: 36px;
+                    }
+                }
+                &:nth-child(2) {
+                    > div {
+                        height: 78px;
+                    }
+                }
+                &:nth-child(3) {
+                    > div {
+                        height: 158px;
+                    }
+                }
+                &:nth-child(4) {
+                    > div {
+                        height: 244px;
+                    }
+                }
+                &:nth-child(5) {
+                    > div {
+                        height: 315px;
+                        &::before {
+                            display: none;
+                        }
+                    }
+                }
+                > {
+                    p {
+                        font-weight: 500;
+                        font-size: 30px;
+                        line-height: 41px;
+                        text-align: center;
+                        color: $LIGHT_GREEN;
+    
+                    }
+                    span {
+                        font-weight: 500;
+                        font-size: 30px;
+                        line-height: 41px;
+                        text-align: center;
+                        color: #000000;
+                    }
+                    div {
+                        position: relative;
+                        width: 25px;
+                        margin: 40px 0;
+                        @include flex(column, center, flex-end);
+    
+                        > .line {
+                            width: 100%;
+                            background: $LIGHT_GREEN;
+                        }
+                        border-radius: 8px;
+                        &:before {
+                            content: "";
+                            position: absolute;
+                            width: 270px;
+                            height: 1px;
+                            z-index: -1;
+                            bottom: 0;
+                            background-color: #D9D9D9;
+                            left: 8px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
