@@ -848,7 +848,7 @@ section {
         height: 100%;
         padding-top: 300px;
         z-index: 15;
-        @include flex(column, center, center);
+        @include flex(column, center, flex-start);
         .title {
             position: relative;
             height: auto;
@@ -883,8 +883,57 @@ section {
         }
         .content {
             position: relative;
+            width: 100%;
             padding-top: 200px;
+            display: flex;
+            justify-content: center;
+            .content-wood {
+                width: 100%;
+                display: flex;
+                justify-content: center;
 
+                .content-show {
+                    position: fixed;
+                    top: 50vh;
+                    opacity: 0;
+                    @include flex(column, center, center);
+                    transition: all .5s;
+                    gap: 20px;
+                    &.active {
+                        opacity: 1;
+                    }
+                    &:nth-child(1) {
+
+                    }
+                    &:nth-child(2) {
+
+                    }
+                    &:nth-child(3) {
+                        img {
+                            width: 250px;
+                        }
+                    }
+                    > img {
+                        width: 180px;
+                        height: 180px;
+                        border-radius: 70px;
+                        object-fit: cover;
+                        overflow: hidden;
+                    }
+                    p {
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 20px;
+                        line-height: 26px;
+                        /* or 130% */
+                        text-align: center;
+                        color: #000000;
+                        > b {
+                            font-weight: bold;
+                        }
+                    }
+                }
+            }
         }
     }
     &.scroll-tree {
