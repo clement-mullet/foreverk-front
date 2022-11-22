@@ -1,29 +1,19 @@
 @import '../variables';
 
+.footer-woods {
+    position: relative;
 
-.footer-clouds {
-    img {
+    .footer-wood {
         position: absolute;
-        z-index: 50;
+    }
 
-        &:nth-child(1) {
-            top: 10px;
-            left: 50%;
-            transform: translate(-50%, 0);
-            width: 40%;
-        }
+    #footer-wood-1 {
+        right: 0;
+        top: 543px;
+    }
 
-        &:nth-child(2) {
-            top: -200px;
-            left: -80px;
-            width: 55%;
-        }
-
-        &:nth-child(3) {
-            top: -200px;
-            right: 0px;
-            width: 55%;
-        }
+    #footer-wood-2 {
+        top: 660px;
     }
 }
 
