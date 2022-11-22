@@ -1,5 +1,4 @@
 import anime from 'animejs/lib/anime.es.js';
-import LocomotiveScroll from 'locomotive-scroll';
 
 let oldScrollY = window.scrollY;
 
@@ -270,8 +269,6 @@ export class eventHandler {
                                     case transition <= clientHeight &&  transition >= (part * 4):
                                         lines[4].style.height = (transition / clientHeight * 500) - 400 + "%";
                                         break;
-                                    default:
-                                        break;
                                 }
                             } else {
                                 content.style.position = "relative";
@@ -401,15 +398,6 @@ export class eventHandler {
     }
 
     static initEvent() {
-        document.querySelector('body').setAttribute("data-scroll-container", "");
-        const scroll = new LocomotiveScroll({
-            el: document.querySelector('[data-scroll-container]'),
-            smooth: true,
-            smoothMobile: true,
-            getDirection: true,
-            getSpeed: true,
-        });
-
         window.scrollTo(0, 0);
         eventHandler.eventScroll();
     }

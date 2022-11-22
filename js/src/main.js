@@ -4,6 +4,7 @@ import { animationHandler } from './components/animationHandler';
 import { swiperHandler } from './components/swiperHandler';
 import { menuHandler } from './components/menuHandler';
 import { usagesHandler } from './components/usagesHandler';
+import { sliderHandler } from './components/sliderHandler';
 
 document.addEventListener('readystatechange', event => {
   menuHandler.eventMenu();
@@ -23,6 +24,7 @@ document.addEventListener('readystatechange', event => {
           case "/notre-vision/":
               animationHandler.getCenterTitle();
               swiperHandler.founder();
+              sliderHandler.displayDescription();
               break;
           case "/les-principaux-usages/":
             usagesHandler.positionLine();
