@@ -4,6 +4,7 @@ import { animationHandler } from './components/animationHandler';
 import { menuHandler } from './components/menuHandler';
 import { usagesHandler } from './components/usagesHandler';
 import { sliderHandler } from './components/sliderHandler';
+import {impactHandler} from './components/impactHandler'
 
 document.addEventListener('readystatechange', event => {
   menuHandler.eventMenu();
@@ -27,6 +28,11 @@ document.addEventListener('readystatechange', event => {
               break;
           case "/les-principaux-usages/":
             usagesHandler.positionLine();
+            break;
+          case "/le-projet-forever-k/":
+            impactHandler.switchTabs();
+            eventHandler.initEvent();
+
             break;
           default: 
             console.log('Route not found');

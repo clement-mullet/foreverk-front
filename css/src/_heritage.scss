@@ -49,14 +49,12 @@ strong {
     overflow: hidden;
 }
 
-.text-gradient-green {
-    h2 {
-        background: linear-gradient(92.4deg, #2F4B26 8.26%, #81AC37 111.1%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        text-fill-color: transparent;
-    }
+.text-gradient-green { 
+    background: linear-gradient(92.4deg, #2F4B26 8.26%, #81AC37 111.1%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;   
 }
 
 .lists {

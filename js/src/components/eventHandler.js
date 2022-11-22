@@ -9,7 +9,9 @@ export class eventHandler {
     // EVENT
 
     static eventRotate(position, wood, speed) {
-        wood.style.transform = "rotate(" + (Math.abs(position.top) / speed) + "deg)";
+        if (wood) {
+            wood.style.transform = "rotate(" + (Math.abs(position.top) / speed) + "deg)";
+        }
     }
 
     static eventBreak(wood, direction) {
@@ -294,7 +296,7 @@ export class eventHandler {
 
                     break;
                 case "table":
-                    content = document.querySelector('.growth-plan > div');
+                    content = document.querySelector('.growth-projct > div');
                     part = clientHeight / 5;
                     lines = [
                         document.querySelector('.table > div:nth-child(1) .line'),

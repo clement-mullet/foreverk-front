@@ -17,3 +17,40 @@ button, a {
         color: white;
     }
 }
+.button {
+    a.elementor-button {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 22px;
+        text-align: center;
+        padding: 16px 24px;
+        border-radius: 8px !important;
+    }
+    &.grey-button {
+        background: #F0F0F0;
+        border-radius: 100px;
+        padding: 16px 24px;
+        gap: 10px;
+        &.active {
+            background: linear-gradient(92.4deg, #2F4B26 8.26%, #81AC37 111.1%);
+            span {
+                color: #ffffff;
+            }
+        }
+    }
+    &.border-black {
+        a.elementor-button {
+            background-color: transparent !important;
+            border: 2px solid black;
+            color: black;
+        }
+    }
+    &.border-white {
+        a.elementor-button {
+            background-color: transparent !important;
+            border: 2px solid white;
+            color: white;
+        }
+    }
+}
