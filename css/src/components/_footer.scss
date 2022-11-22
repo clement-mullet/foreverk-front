@@ -20,3 +20,20 @@
         background-color: #0E170D !important;
     }
 }
+
+.footer-woods {
+    position: relative;
+
+    .footer-wood {
+        position: absolute;
+    }
+
+    #footer-wood-1 {
+        right: 0;
+        top: 543px;
+    }
+
+    #footer-wood-2 {
+        top: 660px;
+    }
+}
