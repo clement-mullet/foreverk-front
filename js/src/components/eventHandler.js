@@ -76,9 +76,11 @@ export class eventHandler {
                         case ((top + clientHeight) >= (positionTop) && (top + clientHeight) <= positionBottom):
                             let transition = (top + clientHeight) - positionTop;
                             wood.style.opacity = 1 - (transition / 450);
+
                             break; 
                         case ((top + clientHeight) <= (positionTop)):
                             wood.style.opacity = 1;
+
                             break;
                         case ((top + clientHeight) >= (positionBottom) && (top + clientHeight) <= (positionBottom + 800)):
                             wood.style.opacity = 0;
@@ -115,12 +117,13 @@ export class eventHandler {
                     switch (true) {
                         case (top >= positionTop):
 
-                            wood.style.opacity = 0;
                             element.style.height = (clientHeight * 2) + "px";
 
                             let transition = top - positionTop;
 
                             if(transition >= 0 && transition <= clientHeight) {
+                                wood.style.opacity != 0 ? wood.style.opacity = 0 : 0;
+
                                 content.style.position = "fixed";
                                 content.style.top = "0px";
 
@@ -176,11 +179,12 @@ export class eventHandler {
 
 
                             element.style.height = (clientHeight * 2) + "px";
-                            wood.style.opacity = 1;
+
 
                             let transition = top - positionTop;
 
                             if(transition >= 0 && transition <= clientHeight) {
+                                wood.style.opacity != 1 ? wood.style.opacity = 1 : 0;
                                 content.style.position = "fixed";
                                 content.style.top = "200px";
                                 switch (true) {
@@ -192,7 +196,6 @@ export class eventHandler {
                                         break;
                                     case transition <= (part * 3) &&  transition >= (part * 2):
                                         (direction == "down" ? lines[0].classList.add('active') : lines[0].classList.remove('active'));
-                                        console.log("3");
                                         break;
                                     case transition <= (part * 4) &&  transition >= (part * 3):
                                         (direction == "down" ? lines[1].classList.add('active') : lines[1].classList.remove('active'));
@@ -220,8 +223,6 @@ export class eventHandler {
                     let contentWood = document.querySelector('.content-wood');
                     let contentShow = document.querySelectorAll('.content-show');
 
-                    console.log((contentWood.getBoundingClientRect().top + lineWood.getBoundingClientRect().height / 2) - bodyRect.top);
-                    console.log(top + clientHeight / 2);
 
                     if(((contentWood.getBoundingClientRect().top + lineWood.getBoundingClientRect().height / 2) - bodyRect.top) <= top + clientHeight / 2) {
 
@@ -229,7 +230,7 @@ export class eventHandler {
                         let transition = (clientHeight / 2) - contentWood.getBoundingClientRect().top;
                         lineWood.style.position != "fixed" ? lineWood.style.position = "fixed" : 0;
                         wood.style.opacity != 0 ? wood.style.opacity = 0 : 0;
-                        lineWood.style.top == "0px" ? lineWood.style.top = (clientHeight / 2) + "px" : 0;
+                        lineWood.style.top == "0px" ? lineWood.style.top = (clientHeight / 2) - (lineWood.getBoundingClientRect().height / 2) + "px" : 0;
                         lineWood.style.left == "0px" ? lineWood.style.left = ((clientWidth / 2) - (lineWood.getBoundingClientRect().width / 2)) + "px" : 0;
                         
                         if(lineWood.style.opacity > 0.1 && lineWood.src.indexOf("2D") > 0) {
@@ -276,12 +277,14 @@ export class eventHandler {
                         }
                     }
 
+
                     switch (true) {
-                        case ((clientHeight / 2) + contentWood.getBoundingClientRect().height) >= contentWood.getBoundingClientRect().top && ((clientHeight / 2) + contentWood.getBoundingClientRect().height) <= contentWood.getBoundingClientRect().bottom:
+                        case ((clientHeight / 2) + contentWood.getBoundingClientRect().height) >= (contentWood.getBoundingClientRect().top + lineWood.getBoundingClientRect().height / 2) && ((clientHeight / 2) + contentWood.getBoundingClientRect().height) <= contentWood.getBoundingClientRect().bottom && top >= positionTop:
                             let transition = Math.abs(((clientHeight / 2) + contentWood.getBoundingClientRect().height) - contentWood.getBoundingClientRect().top);
                             wood.style.opacity > 0 ? wood.style.opacity = 1 - (transition / clientHeight * 4) : 0;
+
                             break;
-                        case (contentWood.getBoundingClientRect().top - bodyRect.top) >= top + clientHeight / 2:
+                        case ((contentWood.getBoundingClientRect().top) - bodyRect.top) >= top + clientHeight / 2 && top >= positionTop:
                             lineWood.style.position != "relative" ? lineWood.style.position = "relative" : 0;
                             lineWood.style.top = "0px";
                             lineWood.style.left = "0px";
@@ -296,7 +299,8 @@ export class eventHandler {
 
                     break;
                 case "table":
-                    content = document.querySelector('.growth-projct > div');
+                    // FAIRE LE SWITCH
+                    content = document.querySelector('.growth-plan > div');
                     part = clientHeight / 5;
                     lines = [
                         document.querySelector('.table > div:nth-child(1) .line'),
@@ -358,11 +362,12 @@ export class eventHandler {
                             wood.style.height = (300 - transition) + "px";
                             wood.style.backgroundImage = "url('wp-content/themes/foreverk-front/assets/content/wood-plate.png')";
                             wood.style.opacity = 1;
+
                             break;
                         case ((top + clientHeight) >= (positionTop - 800) && (top + clientHeight) <= (positionTop)):
                             wood.style.backgroundImage = "url('wp-content/themes/foreverk-front/assets/svg/wood.svg')";
                             wood.style.opacity = 0;
-                            break;
+                        break;
                     }
 
                     break;

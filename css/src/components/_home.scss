@@ -1,5 +1,11 @@
 @import '../variables';
-
+.line-red {
+    position: fixed;
+    top: 50vh;
+    width: 100%;
+    height: 1px;
+    background-color: red;
+}
 section {
     &.top-home {
         background: linear-gradient(180deg, #FFFFFF 0%, #C3EEDF 51.56%, #D3ECD6 100%);
