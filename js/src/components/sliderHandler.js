@@ -1,3 +1,5 @@
+let sliderState = 1;
+
 export class sliderHandler {
     static displayDescription() {
         let foundersImages = document.querySelectorAll('.founders-slider img');
@@ -5,8 +7,16 @@ export class sliderHandler {
         let imageDescription = document.querySelector('.founder-description-img img');
         let imageLabel = document.querySelector('.slider-image-label');
         let text1 = document.querySelector('.founder-description-text-1');
+        let sliderArrow = document.querySelectorAll('.founders-slider svg');
         let text2 = document.querySelector('.founder-description-text-2');
-        console.log(foundersImages);
+        
+        sliderArrow[0].addEventListener('click', function(){
+            sliderState = sliderState + 1;
+        });
+        sliderArrow[1].addEventListener('click', function() {
+            sliderState = sliderState + 1;
+        });
+
         foundersImages.forEach((image, index) => {
             image.addEventListener('click', function() {
                 sliderHandler.highlightImage(image, index);
@@ -79,21 +89,9 @@ export class sliderHandler {
     }
 
     static placeCursor(index, image) {
-        let sliderState = 1;
-        let sliderArrow = document.querySelectorAll('.founders-slider svg');
         let foundersImages = document.querySelectorAll('.founders-slider img');
         let cursor = document.querySelector('.bitognio');
-
-        sliderArrow[0].addEventListener('click', function() {
-            if (sliderState > 1) {
-                sliderState = sliderState - 1;
-            }
-        })
-        sliderArrow[1].addEventListener('click', function() {
-            if (sliderState < 3) {
-                sliderState = sliderState + 1;
-            }
-        })
+        
 
         switch (sliderState) {
             case 1:
