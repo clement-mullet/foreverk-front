@@ -6,7 +6,7 @@ export class sliderHandler {
         let imageLabel = document.querySelector('.slider-image-label');
         let text1 = document.querySelector('.founder-description-text-1');
         let text2 = document.querySelector('.founder-description-text-2');
-
+        console.log(foundersImages);
         foundersImages.forEach((image, index) => {
             image.addEventListener('click', function() {
                 sliderHandler.highlightImage(image, index);
@@ -79,23 +79,38 @@ export class sliderHandler {
     }
 
     static placeCursor(index, image) {
-        let sliderArrow = document.querySelectorAll('.founders-slider i');
+        let sliderState = 1;
+        let sliderArrow = document.querySelectorAll('.founders-slider svg');
         let foundersImages = document.querySelectorAll('.founders-slider img');
-        let left = foundersImages[index].x - (foundersImages[index].offsetWidth / 2) + 25;
-        let cursor = document.querySelectorAll('.bitognio');
-        cursor[0].style.left = left + "px";
+        let cursor = document.querySelector('.bitognio');
+
         sliderArrow[0].addEventListener('click', function() {
-            console.log('left')
-            let leftOffset = (foundersImages[index].offsetLeft + foundersImages[index].offsetWidth  + 25); 
-            console.log(leftOffset);
-            cursor[0].style.left += leftOffset + "px";
+            if (sliderState > 1) {
+                sliderState = sliderState - 1;
+            }
         })
         sliderArrow[1].addEventListener('click', function() {
-            console.log('right')
-            let rightOffset = (foundersImages[index].offsetLeft + foundersImages[index].offsetWidth + 25);
-            console.log(rightOffset);
-            cursor[0].style.left += rightOffset + "px";
+            if (sliderState < 3) {
+                sliderState = sliderState + 1;
+            }
         })
-        console.log(foundersImages);
+
+        switch (sliderState) {
+            case 1:
+                console.log(sliderState);
+                break;
+
+            case 2:
+                console.log(sliderState);
+                break;
+
+            case 3:
+                console.log(sliderState);
+                break;
+        
+            default:
+                console.log('Slider state is out of range');
+                break;
+        }
     }
 }
