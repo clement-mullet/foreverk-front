@@ -8,7 +8,6 @@ import {impactHandler} from './components/impactHandler'
 import { utilsHandler } from './components/utilsHandler';
 
 document.addEventListener('readystatechange', function(event) {
-  menuHandler.eventMenu();
   switch (document.readyState) {
     case "loading":
       
@@ -17,6 +16,7 @@ document.addEventListener('readystatechange', function(event) {
         utilsHandler.scrollTop();
         break;
       case "complete":
+        menuHandler.eventMenu();
         switch (location.pathname) {
             case "/":
                 eventHandler.initEvent();

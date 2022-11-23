@@ -1,18 +1,8 @@
 @import '../variables';
 
-$breakpoints: (
-  'phone': 450,
-  'tablet': 768px,
-  'desktop': 1024px
-) !default;
-
 .header {
-    height: 170px; 
+    height: 170px;
     z-index: 50;
-    @include media('<=phone') {
-        padding: 20px;
-    }
-    
 }
 
 .menu-burger {

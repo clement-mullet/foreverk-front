@@ -24,16 +24,22 @@ $WHITE: #FFF;
 /* Track */
 ::-webkit-scrollbar-track {
     background: transparent;
+    width: 0;
+
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
     background: transparent;
+    width: 0;
+
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: transparent;
+    width: 0;
+
 }
 
 * {
