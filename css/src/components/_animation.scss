@@ -27,3 +27,24 @@
         transform: translateX(var(--center));
     }
 }
+
+
+@keyframes leftToRight {
+    0% {
+        right: 100px;
+    }
+
+    100% {
+        right: 0;
+    }
+}
+
+@keyframes rightToLeft {
+    0% {
+        left: 100px;
+    }
+
+    100% {
+        left: 0;
+    }
+}

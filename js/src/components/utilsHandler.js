@@ -9,4 +9,8 @@ export class utilsHandler {
     
         return false;
     }
+    static scrollTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      
+    }
 }

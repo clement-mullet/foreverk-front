@@ -17,8 +17,34 @@ $WHITE: #FFF;
 // $BUTTON_SIZE_MENU: 12px;
 
 
+::-webkit-scrollbar {
+    width: 0;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: transparent;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: transparent;
+}
+
 * {
     font-family: 'Inter';
+}
+
+html {
+    overflow-x: hidden;
+}
+body {
+    overflow: hidden;
 }
 
 .home-section {

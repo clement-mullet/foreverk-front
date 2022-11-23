@@ -5,12 +5,14 @@
     background-image: url("../../assets/svg/wood.svg");
     width: 150px;
     height: 150px;
+    top: 52vh;
     transform-origin: center;
     background-position: center 40%;
     z-index: 7;
     background-repeat: no-repeat;
     background-size: contain;
     opacity: 1;
+    animation: slideTopToBottom 3s ease;
 }
 
 .line-wood {
@@ -22,3 +24,13 @@
     height: 275px;
 }
 
+
+
+@keyframes slideTopToBottom {
+	0% {
+		top: 45vh;
+    }
+	100% {
+		top: 52vh;
+	}
+}

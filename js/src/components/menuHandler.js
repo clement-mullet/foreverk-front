@@ -20,6 +20,14 @@ export class menuHandler {
                 } 
             });
         })
+
+        setTimeout(() => {
+            document.querySelector('.loader--state').style.left = "-100%";
+        }, 5000);
+        setTimeout(() => {
+            menuHandler.scrollEvent(false);
+        }, 3000);
+
     }
 
     static async scrollEvent(isActive) {

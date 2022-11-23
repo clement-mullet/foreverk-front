@@ -3,13 +3,23 @@
 
 *{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-moz-osx-font-smooth:grayscale;}
 
+
 .clouds__clouds{padding:0;max-width:none;pointer-events:none;}
-.clouds__cloud, .clouds__cloud-paulownia{width:100%;position:absolute;bottom:0;}
-.clouds__cloud img, .clouds__cloud-paulownia img{width:100%;}
+.clouds__cloud, .clouds__cloud-paulownia, .clouds__cloud-loader{width:100%;position:absolute;bottom:0;}
+.clouds__cloud img, .clouds__cloud-paulownia img, .clouds__cloud-loader img{width:100%;}
 // .clouds__mask{width:100%;height:300vh;-webkit-mask-image:url("https://www.capsul-in-pro.com/home-compost-capsule/assets/images/scrap-inverted-81ead9740df14353d5f8feee43326d4b.svg#scrap");-webkit-mask-size:100% 100%;-webkit-mask-clip:border-box;-webkit-mask-size:100vw;-webkit-mask-repeat:no-repeat;-webkit-mask-position:bottom;position:absolute;left:0;right:0;bottom:-2px;}
 .clouds__transition{position:absolute;bottom:0;left:0;right:0;width:100%;height:100vh;}
 .clouds [data-cloud="313"] img{opacity:0.75;transform:scale(0.713646532);}
 .clouds [data-cloud="316"] img{transform:scale(-1);}
+
+
+
+.clouds [data-cloud-name="cloud12"]{width: 115.75vw;left: -3.5vw;}
+.clouds [data-cloud-name="cloud11"]{width:57.49999999999999vw; z-index: 10;left:26.75vw;}
+.clouds [data-cloud-name="cloud14"]{width: 225vw;z-index: 10; left: -35vw;}
+.clouds [data-cloud-name="cloud13"]{width:177.5vw;left:-35vw;}
+.clouds [data-cloud-name="cloud10"]{width:80vw;left:15vw;}
+
 
 
 .clouds [data-cloud-name="cloud2"]{width: 115.75vw;left: -3.5vw;bottom: 27.5vw;}
