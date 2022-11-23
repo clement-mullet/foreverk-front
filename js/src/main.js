@@ -37,7 +37,22 @@ document.addEventListener('readystatechange', function(event) {
             default: 
               console.log('Route not found');
               break;
-        }
-        break;
+          case "/les-principaux-usages/":
+            usagesHandler.positionLine();
+            break;
+          case "/le-projet-forever-k/":
+            impactHandler.switchTabs();
+            eventHandler.initEvent();
+
+            break;
+
+          case "/le-rallye/":
+            animationHandler.getCenterTitle();
+            break;
+          default: 
+            console.log('Route not found');
+            break;
+      }
+      break;
   }
 })
