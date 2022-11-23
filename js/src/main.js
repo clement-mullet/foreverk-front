@@ -34,6 +34,10 @@ document.addEventListener('readystatechange', event => {
             eventHandler.initEvent();
 
             break;
+
+          case "/le-rallye/":
+            animationHandler.getCenterTitle();
+            break;
           default: 
             console.log('Route not found');
             break;
